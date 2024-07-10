@@ -1,0 +1,23 @@
+Sex,Sum of Fare,,,,Passenger Name,Sum of Fare
+"Cardeza, Mr. Thomas Drake Martinez",512.3292,,,,"Baxter, Mr. Quigg Edmond",247.5208
+male,512.3292,,,,"Baxter, Mrs. James (Helene DeLaudeniere Chaput)",247.5208
+B51 B53 B55,512.3292,,,,"Cardeza, Mr. Thomas Drake Martinez",512.3292
+"Fortune, Miss. Alice Elizabeth",263,,,,"Fortune, Miss. Alice Elizabeth",263
+female,263,,,,"Fortune, Miss. Mabel Helen",263
+C23 C25 C27,263,,,,"Fortune, Mr. Charles Alexander",263
+"Fortune, Miss. Mabel Helen",263,,,,"Fortune, Mr. Mark",263
+female,263,,,,"Lesurer, Mr. Gustave J",512.3292
+C23 C25 C27,263,,,,"Ryerson, Miss. Emily Borie",262.375
+"Fortune, Mr. Charles Alexander",263,,,,"Ryerson, Miss. Susan Parker ""Suzette""",262.375
+male,263,,,,"Ward, Miss. Anna",512.3292
+C23 C25 C27,263,,,,Grand Total,3608.7792
+"Fortune, Mr. Mark",263,,,,,
+male,263,,,,,
+C23 C25 C27,263,,,,,
+"Lesurer, Mr. Gustave J",512.3292,,,,,
+male,512.3292,,,,,
+B101,512.3292,,,,,
+"Ward, Miss. Anna",512.3292,,,,,
+female,512.3292,,,,,
+(blank),512.3292,,,,,
+Grand Total,2588.9876,,,,,
