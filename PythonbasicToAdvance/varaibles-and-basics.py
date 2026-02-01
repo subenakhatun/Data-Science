@@ -41,3 +41,9 @@ a = input("Enter A Number: ")
 b = input("Enter Another Number: ")
 c = float(a)/float(b)
 print(f"Multiply of {a} and {b} = {c}")
+
+# 7.Swap two numbers without using a third variable
+a = 6
+b = 90
+a,b = b,a 
+print(a,b)
