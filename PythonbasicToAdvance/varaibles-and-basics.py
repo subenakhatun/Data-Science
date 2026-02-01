@@ -43,8 +43,8 @@ c = float(a)/float(b)
 print(f"Divide of {a} and {b} = {c}")
 
 # 7.Swap two numbers without using a third variable
-a = int(input("Enter a side number: "))
-b = int(input("Enter b side number: "))
+a = int(input("Enter a number: "))
+b = int(input("Enter b  number: "))
 a,b = b,a 
 print(a,b)
 
