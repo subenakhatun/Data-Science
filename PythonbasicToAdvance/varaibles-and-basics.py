@@ -19,7 +19,13 @@ print("HEllo Wolrd!")
 print(f"My name is Subena\n My Age is 30")
 
 # 3.Add two numbers (user input)
-a = int(input("Enter A Number: "))
-b = int(input("Enter Another Number: "))
-c = a+b
+a = input("Enter A Number: ")
+b = input("Enter Another Number: ")
+c = int(a)+int(b)
+print(f"Sum of {a} and {b} = {c}")
+
+# 4.	Subtract two numbers (user input)
+a = input("Enter A Number: ")
+b = input("Enter Another Number: ")
+c = int(a)-int(b)
 print(f"Sum of {a} and {b} = {c}")
