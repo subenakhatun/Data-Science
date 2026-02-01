@@ -5,7 +5,7 @@
 3.	Add two numbers (user input)
 4.	Subtract two numbers (user input)
 5.	Multiply two numbers (user input)
-6.	Divide two numbers (user input, handle float result)
+6.	Divide two numbers (user input, handle float result) 
 7.	Swap two numbers without using a third variable
 8.	Calculate the area of a rectangle (length & width input)
 9.	Calculate the perimeter of a rectangle (length & width input)
