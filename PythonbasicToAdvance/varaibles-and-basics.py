@@ -47,3 +47,9 @@ a = 6
 b = 90
 a,b = b,a 
 print(a,b)
+
+# 8.Calculate the area of a rectangle (length & width input)
+a = 6
+b = 90
+print("Area of a ractangle",a*b)
+
