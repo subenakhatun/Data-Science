@@ -1,1 +1,25 @@
-print("Hello world")
+#  Variables & Basics (10 problems)
+"""
+1.	Print “Hello, World!”
+2.	Print your name and age on separate lines
+3.	Add two numbers (user input)
+4.	Subtract two numbers (user input)
+5.	Multiply two numbers (user input)
+6.	Divide two numbers (user input, handle float result)
+7.	Swap two numbers without using a third variable
+8.	Calculate the area of a rectangle (length & width input)
+9.	Calculate the perimeter of a rectangle (length & width input)
+10.	Convert Celsius to Fahrenheit (user input) """ 
+
+
+# 1.	Print “Hello, World!”
+print("HEllo Wolrd!")
+
+# 2.Print your name and age on separate lines
+print(f"My name is Subena\n My Age is 30")
+
+# 3.Add two numbers (user input)
+a = int(input("Enter A Number: "))
+b = int(input("Enter Another Number: "))
+c = a+b
+print(f"Sum of {a} and {b} = {c}")
