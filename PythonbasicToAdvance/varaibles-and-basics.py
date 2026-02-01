@@ -59,5 +59,13 @@ a = int(input("Enter a side number: "))
 b = int(input("Enter b side number: "))
 c = int(input("Enter c side number: "))
 
-perimeter = a+b+c
+perimeter = 2*(a+b)
 print(perimeter)
+
+# 10.Convert Celsius to Fahrenheit (user input)  °F = (°C × 9/5) + 32""" 
+
+C = float(input("Enter a Calcius value: "))
+F = (C*(9/5))+32
+print(F)
+
+
