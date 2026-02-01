@@ -53,3 +53,11 @@ a = 6
 b = 90
 print("Area of a ractangle",a*b)
 
+# 9.Calculate the perimeter of a rectangle (length & width input)
+
+a = int(input("Enter a side number: "))
+b = int(input("Enter b side number: "))
+c = int(input("Enter c side number: "))
+
+perimeter = a+b+c
+print(perimeter)
