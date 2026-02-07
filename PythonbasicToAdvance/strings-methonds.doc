@@ -1,0 +1,9 @@
+| Method      | Description                                            |
+| ----------- | ------------------------------------------------------ |
+| `isalpha()` | Check if all characters are letters (a-z, A-Z)         |
+| `isdigit()` | Check if all characters are digits (0-9)               |
+| `isalnum()` | Check if all characters are letters or digits          |
+| `isupper()` | Check if all letters are uppercase                     |
+| `islower()` | Check if all letters are lowercase                     |
+| `isspace()` | Check if all characters are spaces                     |
+| `istitle()` | Check if string is in title case (e.g., "Hello World") |
