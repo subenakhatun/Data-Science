@@ -7,3 +7,10 @@
 | `islower()` | Check if all letters are lowercase                     |
 | `isspace()` | Check if all characters are spaces                     |
 | `istitle()` | Check if string is in title case (e.g., "Hello World") |
+| Method         | Description                          |
+| -------------- | ------------------------------------ |
+| `upper()`      | Convert string to uppercase          |
+| `lower()`      | Convert string to lowercase          |
+| `capitalize()` | Capitalize first letter              |
+| `title()`      | Capitalize first letter of each word |
+| `swapcase()`   | Swap uppercase ↔ lowercase           |
