@@ -1,0 +1,33 @@
+
+| যদি Problem-এ...                   | তাহলে...     |
+| ----------------------------       | ------------ |
+| Decision লাগে                      | `if`         |
+| একই কাজ নির্দিষ্ট সংখ্যক বার           | `for`        |
+| কতবার চলবে জানা নেই                | `while`      |
+| অনেকগুলো একই ধরনের data          | `list`       |
+| Key → Value সম্পর্ক                   | `dictionary` |
+| Data পরিবর্তন হবে না                  | `tuple`      |
+
+এরপর Algorithm
+তারপরই code।
+Problem
+↓
+Pattern চিনো
+↓
+Algorithm লেখো
+↓
+Pseudo Code
+↓
+Python Code
+↓
+Professional Review
+
+কটা নতুন অভ্যাস
+এখন থেকে কোনো problem solve করার আগে ৩০ সেকেন্ড শুধু এই প্রশ্নগুলো করবে।
+
+Step 1
+আমাকে কী বের করতে হবে?
+
+Step 2
+নিজেকে জিজ্ঞেস:
+"Python-এ কি এর জন্য কোনো built-in থাকতে পারে?"
