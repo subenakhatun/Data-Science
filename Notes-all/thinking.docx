@@ -31,3 +31,26 @@ Step 1
 Step 2
 নিজেকে জিজ্ঞেস:
 "Python-এ কি এর জন্য কোনো built-in থাকতে পারে?"
+
+Problem
+│
+├── Decision লাগবে?
+│       │
+│       └── if
+│
+├── Repeat লাগবে?
+│       │
+│       ├── জানা আছে → for
+│       └── জানা নেই → while
+│
+├── অনেক data?
+│       │
+│       └── list
+│
+├── Key + Value?
+│       │
+│       └── dictionary
+│
+└── একই কাজ বারবার হবে?
+        │
+        └── function
