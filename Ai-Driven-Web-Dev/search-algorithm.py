@@ -11,4 +11,4 @@ result_list = []
 for i in range(len(contact_list)):
     if target_list == contact_list[i]:
         result_list.append(i)
-print(result_list)
+print(result_list) 
