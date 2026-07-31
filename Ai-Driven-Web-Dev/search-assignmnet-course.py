@@ -30,10 +30,14 @@ search_course = input("Enter a name of course: ")
 
 found_course = []
 
-for course in course_list:
-    if search_course in course_list:
+for course in range(len(course_list)):
+    # lowercase na korle input integer hisbe niye nibe
+     if search_course.lower() in course_list[course].lower():
         found_course.append(course_list[course])
-if found_course == True: 
-    print(found_course)
+
+# aktar por akta dekhanur jonno ei ta kora
+if found_course: 
+    for course_item in range(len(found_course)):
+        print(found_course[course_item])
 else:
     print("Course Not found")
