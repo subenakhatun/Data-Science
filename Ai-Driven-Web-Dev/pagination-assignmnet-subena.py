@@ -6,10 +6,10 @@ page_number = int(input("Enter Page Number: "))
 
 # Step 1: Create Total Data
 total_data = []
- g 
+
 for i in range(1, total_items + 1):
     total_data.append(i) 
-    tot
+    
 
 # Step 2: Create Pages
 pages = []
