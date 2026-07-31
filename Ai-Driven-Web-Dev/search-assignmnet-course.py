@@ -13,6 +13,7 @@ Step 8: jodi found_course list emptyna hoy thahole print kori
 Step 9: jodi empty hoy found_course list thahole print kori not found 
 
 '''
+# Create a course list 
 course_list = [
     "Machine Learning & AI agent for Voice Data Analysis",
     "Data Analytics With Machine Learning",
@@ -21,3 +22,18 @@ course_list = [
     "Data Analytics With Machine Learning (Offline)",
     "Machine Learning to AI Agent Development for Software Engineers (Offline Bootcamp)"
 ]
+
+# find a course 
+search_course = input("Enter a name of course: ")
+
+# found course list create
+
+found_course = []
+
+for course in course_list:
+    if search_course in course_list:
+        found_course.append(course_list[course])
+if found_course == True: 
+    print(found_course)
+else:
+    print("Course Not found")
