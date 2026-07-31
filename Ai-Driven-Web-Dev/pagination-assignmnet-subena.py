@@ -22,7 +22,11 @@ for i in range(len(total_data)):
         pages.append(current_page)
         current_page = []
 
-# Step 3: Add Remaining Data (if any)
+user_search_number = int(input("Enter a number : "))
+if user_search_number >= len(pages):
+    print(pages[user_search_number])
+'''
+    # Step 3: Add Remaining Data (if any)
 if len(current_page) > 0:
     pages.append(current_page)
 
@@ -33,3 +37,5 @@ if page_number >= 1 and page_number <= len(pages):
     print(pages[page_number - 1])
 else:
     print("Invalid Page Number")
+
+'''
