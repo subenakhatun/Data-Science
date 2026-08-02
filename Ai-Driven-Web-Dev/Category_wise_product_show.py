@@ -159,3 +159,13 @@ products = [
 # Step 2: Take category input from the user.
 search_category = input('Enter a name of Category: ')
 
+# Step 3: Create an empty list to store matched products.
+matched_products = []
+
+# Step 4: Apply a for loop to the products list.
+for catogory in products:
+    if search_category.lower() in products[catogory].lower:
+        matched_products.append(products[catogory])
+    else:
+        print('Not Match any category')
+print(f'{products[catogory]} {matched_products}') 
