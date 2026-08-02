@@ -31,7 +31,7 @@ search_course = input("Enter a name of course: ")
 found_course = []
 
 for course in range(len(course_list)):
-    # lowercase na korle input integer hisbe niye nibe
+    
      if search_course.lower() in course_list[course].lower():
         found_course.append(course_list[course])
 
