@@ -9,7 +9,7 @@ Step 6: If the matched products list is empty,
         show "Category Not Found".
 Step 7: Otherwise, display the matched products list.
 '''
-
+# Step 1: Create a list of dictionaries for products.
 products = [
 
     {
@@ -156,3 +156,6 @@ products = [
     }
 
 ]
+# Step 2: Take category input from the user.
+search_category = input('Enter a name of Category: ')
+
