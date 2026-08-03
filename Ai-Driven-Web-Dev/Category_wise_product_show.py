@@ -160,11 +160,23 @@ products = [
 # search_category = input('Enter a name of Category: ')
 
 # Step 3: Create an empty list to store matched products.
-matched_products = []
+# list er moddhe dukhbo
+search_product = input("Enter a Search Category: ").strip() # Strip()-remove before after sapce
+found_product_list = []
+# first a ami products list a dukhlam
+for product in products:
+    # product list er dictionary er j category key niye kaj korbo so oita selets krolam.
+    # search_product ta product['category'] er moddhe ase ki na check korbo, tobe obossi lowercase kore nite hobe.
+    if search_product.lower() in product['category'].lower():
+        # jodi mile thaole oi category er sob gula prodcut k Found_product_list a add korbo
+        found_product_list.append(product)
+# jodi kuje pay thahole show korbe ak ak kore 
+if found_product_list:
+    for i in found_product_list:
+        print(i)
+# ar na apile empty list dekhabe. chaileaakta search again dite pari
+else:
+    print("Category Not Found")
 
-for i in products:
-    print(i)
 
-for i in range(len(products)):
-    print(i)
-# Step 4: Apply a for loop to the products list.
+        
