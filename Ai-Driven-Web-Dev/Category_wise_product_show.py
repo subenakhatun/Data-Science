@@ -157,9 +157,14 @@ products = [
 
 ]
 # Step 2: Take category input from the user.
-search_category = input('Enter a name of Category: ')
+# search_category = input('Enter a name of Category: ')
 
 # Step 3: Create an empty list to store matched products.
 matched_products = []
 
+for i in products:
+    print(i)
+
+for i in range(len(products)):
+    print(i)
 # Step 4: Apply a for loop to the products list.
