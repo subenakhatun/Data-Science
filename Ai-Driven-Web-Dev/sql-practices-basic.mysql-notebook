@@ -2,7 +2,7 @@
     "type": "MySQLNotebook",
     "version": "1.0",
     "caption": "DB Notebook",
-    "content": "\\about\n\nCREATE DATABASE db;\nCREATE TABLE db.Employees (\n\n    EmployeeID INT PRIMARY KEY,\n    FirstName VARCHAR(50),\n    LastName VARCHAR(50),\n    Department VARCHAR(50),\n    Salary DECIMAL(10, 2)\n\n);\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary) VALUES\n\n(1, 'John', 'Doe', 'HR', 55000.00),\n(2, 'Jane', 'Smith', 'IT', 75000.00),\n(3, 'Emily', 'Jones', 'Finance', 65000.00),\n(4, 'Michael', 'Brown', 'IT', 80000.00),\n(5, 'Sarah', 'Davis', 'HR', 60000.00),\n(6, 'David', 'Wilson', 'Finance', 70000.00),\n(7, 'Laura', 'Garcia', 'IT', 72000.00),\n(8, 'Robert', 'Miller', 'HR', 58000.00),\n(9, 'Sophia', 'Martinez', 'Finance', 67000.00),\n(10, 'James', 'Anderson', 'IT', 81000.00);\nSELECT * from db.employees limit 5;\n\nCREATE TABLE db.Customers (\nCustomerID int primary key,\nCustomerName VARCHAR(50),\nCountry VARCHAR(50)\n);\nINSERT INTO db.Customers (CustomerID, CustomerName, Country)\nVALUES\n(1, 'Alice', 'USA'),\n(2, 'Bob', 'UK'),\n(3, 'Charlie', 'Canada'),\n(4, 'David', 'USA'),\n(5, 'Eve', 'Australia');\n-- Create the Orders table\nCREATE TABLE db.Orders(\nOrderID INT PRIMARY KEY,\nCustomerID INT,\nOrderDate DATE,\nProductID INT,\nFOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)\n);\nINSERT INTO db.Orders (OrderID, CustomerID, OrderDate, ProductID)\nVALUES\n(101, 1, '2024-08-01', 1001),\n(102, 1, '2024-08-03', 1002),\n(103, 2, '2024-08-04', 1001),\n(104, 3, '2024-08-05', 1003),\n(105, 5, '2024-08-06', 1004);\nCREATE TABLE db.Products (\nProductID INT PRIMARY KEY,\nProductName VARCHAR(50),\nPrice DECIMAL(10, 2)\n);\nINSERT INTO db.Products (ProductID, ProductName, Price)\nVALUES\n(1001, 'Laptop', 1000),\n(1002, 'Smartphone', 700),\n(1003, 'Tablet', 500),\n(1004, 'Headphones', 200),\n(1005, 'Smartwatch', 300);\nSELECT * from db.products limit 3;\nSELECT * from db.customers limit 4;\n\n\n\n",
+    "content": "\\about\n\nCREATE DATABASE db;\nCREATE TABLE db.Employees (\n\n    EmployeeID INT PRIMARY KEY,\n    FirstName VARCHAR(50),\n    LastName VARCHAR(50),\n    Department VARCHAR(50),\n    Salary DECIMAL(10, 2)\n\n);\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary) VALUES\n\n(1, 'John', 'Doe', 'HR', 55000.00),\n(2, 'Jane', 'Smith', 'IT', 75000.00),\n(3, 'Emily', 'Jones', 'Finance', 65000.00),\n(4, 'Michael', 'Brown', 'IT', 80000.00),\n(5, 'Sarah', 'Davis', 'HR', 60000.00),\n(6, 'David', 'Wilson', 'Finance', 70000.00),\n(7, 'Laura', 'Garcia', 'IT', 72000.00),\n(8, 'Robert', 'Miller', 'HR', 58000.00),\n(9, 'Sophia', 'Martinez', 'Finance', 67000.00),\n(10, 'James', 'Anderson', 'IT', 81000.00);\nSELECT * from db.employees limit 5;\n\nCREATE TABLE db.Customers (\nCustomerID int primary key,\nCustomerName VARCHAR(50),\nCountry VARCHAR(50)\n);\nINSERT INTO db.Customers (CustomerID, CustomerName, Country)\nVALUES\n(1, 'Alice', 'USA'),\n(2, 'Bob', 'UK'),\n(3, 'Charlie', 'Canada'),\n(4, 'David', 'USA'),\n(5, 'Eve', 'Australia');\n-- Create the Orders table\nCREATE TABLE db.Orders(\nOrderID INT PRIMARY KEY,\nCustomerID INT,\nOrderDate DATE,\nProductID INT,\nFOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)\n);\nINSERT INTO db.Orders (OrderID, CustomerID, OrderDate, ProductID)\nVALUES\n(101, 1, '2024-08-01', 1001),\n(102, 1, '2024-08-03', 1002),\n(103, 2, '2024-08-04', 1001),\n(104, 3, '2024-08-05', 1003),\n(105, 5, '2024-08-06', 1004);\nCREATE TABLE db.Products (\nProductID INT PRIMARY KEY,\nProductName VARCHAR(50),\nPrice DECIMAL(10, 2)\n);\nINSERT INTO db.Products (ProductID, ProductName, Price)\nVALUES\n(1001, 'Laptop', 1000),\n(1002, 'Smartphone', 700),\n(1003, 'Tablet', 500),\n(1004, 'Headphones', 200),\n(1005, 'Smartwatch', 300);\nSELECT * from db.products limit 3;\nSELECT * from db.customers limit 4;\n/* \n1.How do you select all columns from the Employees table?\n2. How do you select only the FirstName and LastName columns from the Employees table?\n3. How do you find all employees who work in the 'IT' department?\n4. How do you select employees with a salary greater than 70000?\n5. How do you sort the results by the last name in ascending order?   \n6. How do you select distinct departments from the Employees table?   \n7. How do you count the number of employees in each department?   \n8. How do you find the maximum salary in the Employees table?   \n9. How do you find the average salary of employees in the 'Finance' department?   \n10. How do you select employees whose name starts with 'M'?   \n11. How do you select employees who work in the 'IT' department and have a salary greater than 75000?\n12. How do you find employees who work in the 'HR' department or have a salary less than 60000?\n13. How do you select employees who do not work in the 'Finance' department?\n14. How do you find employees whose salary is between 60000 and 70000 and who work in the 'Finance' department?\n15. How do you find the employees who work in the 'IT' department and do not have a salary greater than 80000?\n16. How do you find employees who work in the 'HR' or 'Finance' departments and have a salary greater than 65000?\n17. How do you select employees whose last name starts with 'D' and do not work in the 'HR' department?\n18. How do you find employees who do not work in the 'IT' department and have a salary greater than 70000?\n19. How do you select employees who do not work in the 'IT' department and either have a salary greater than 75000 or have the first name 'Subena'?\n20. How do you find employees who do not work in the 'HR' or 'IT' department?\n21. Write a SQL query to find the names of customers who have placed an order.\n22. Find the list of customers who have not placed any orders.\n23. ist all orders along with the product name and price.\n24. Find the names of customers and their orders, including customers who have not placed any order.\n25. Retrieve a list of products that have never been ordered.\n26. Find the total number of orders placed by each customer.\n27. Display the customers, the products they have ordered, and the order date. Include customers who have not placed any orders.\n28. Identify pairs of customers who live in the same country.\n29. Find the customer who has spent the most on their orders.\n30. Find customers who have ordered more than one type of product.\n31. List all the products and their corresponding orders using a RIGHT JOIN, including products that have not been ordered.\n32. Find the name of customers who have ordered a product priced above $500.\n33. Find customers who have ordered the same product more than once. \n*/\nSELECT * FROM db.Employees;\n",
     "options": {
         "tabSize": 4,
         "indentSize": 4,
@@ -15,11 +15,11 @@
             {
                 "inSelectionMode": false,
                 "selectionStart": {
-                    "lineNumber": 68,
+                    "lineNumber": 104,
                     "column": 1
                 },
                 "position": {
-                    "lineNumber": 68,
+                    "lineNumber": 104,
                     "column": 1
                 }
             }
@@ -27,7 +27,7 @@
         "viewState": {
             "scrollLeft": 0,
             "firstPosition": {
-                "lineNumber": 64,
+                "lineNumber": 97,
                 "column": 1
             },
             "firstPositionDeltaTop": -12
@@ -531,7 +531,7 @@
                         }
                     ]
                 },
-                "currentHeight": 28.875,
+                "currentHeight": 28,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -558,7 +558,7 @@
                         "9375b469-087d-4314-fc81-dff20ab9f7bc"
                     ]
                 },
-                "currentHeight": 148.859375,
+                "currentHeight": 36,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -681,7 +681,7 @@
                         "ed538941-230d-44f8-b693-395f83b71526"
                     ]
                 },
-                "currentHeight": 175.484375,
+                "currentHeight": 36,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -797,27 +797,232 @@
         {
             "state": {
                 "start": 68,
-                "end": 68,
+                "end": 103,
                 "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "049b613f-74c3-421d-f196-525b5914e2a4"
+                    ]
+                },
+                "currentHeight": 335.28125,
                 "currentSet": 1,
                 "statements": [
                     {
                         "delimiter": ";",
                         "span": {
                             "start": 0,
+                            "length": 2794
+                        },
+                        "contentStart": 2767,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 2794,
                             "length": 4
                         },
-                        "contentStart": 2,
+                        "contentStart": 2793,
                         "state": 3
                     }
                 ]
             },
-            "data": []
+            "data": [
+                {
+                    "tabId": "5cb33205-6461-4e72-e94d-c5404b4df5fd",
+                    "resultId": "049b613f-74c3-421d-f196-525b5914e2a4",
+                    "rows": [
+                        {
+                            "0": 1,
+                            "1": "John",
+                            "2": "Doe",
+                            "3": "HR",
+                            "4": "55000.00"
+                        },
+                        {
+                            "0": 2,
+                            "1": "Jane",
+                            "2": "Smith",
+                            "3": "IT",
+                            "4": "75000.00"
+                        },
+                        {
+                            "0": 3,
+                            "1": "Emily",
+                            "2": "Jones",
+                            "3": "Finance",
+                            "4": "65000.00"
+                        },
+                        {
+                            "0": 4,
+                            "1": "Michael",
+                            "2": "Brown",
+                            "3": "IT",
+                            "4": "80000.00"
+                        },
+                        {
+                            "0": 5,
+                            "1": "Sarah",
+                            "2": "Davis",
+                            "3": "HR",
+                            "4": "60000.00"
+                        },
+                        {
+                            "0": 6,
+                            "1": "David",
+                            "2": "Wilson",
+                            "3": "Finance",
+                            "4": "70000.00"
+                        },
+                        {
+                            "0": 7,
+                            "1": "Laura",
+                            "2": "Garcia",
+                            "3": "IT",
+                            "4": "72000.00"
+                        },
+                        {
+                            "0": 8,
+                            "1": "Robert",
+                            "2": "Miller",
+                            "3": "HR",
+                            "4": "58000.00"
+                        },
+                        {
+                            "0": 9,
+                            "1": "Sophia",
+                            "2": "Martinez",
+                            "3": "Finance",
+                            "4": "67000.00"
+                        },
+                        {
+                            "0": 10,
+                            "1": "James",
+                            "2": "Anderson",
+                            "3": "IT",
+                            "4": "81000.00"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "EmployeeID",
+                            "field": "0",
+                            "dataType": {
+                                "type": 4,
+                                "flags": [
+                                    "SIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 10,
+                                "parameterFormatType": "OneOrZero",
+                                "synonyms": [
+                                    "INTEGER",
+                                    "INT4"
+                                ]
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "FirstName",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        },
+                        {
+                            "title": "LastName",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        },
+                        {
+                            "title": "Department",
+                            "field": "3",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        },
+                        {
+                            "title": "Salary",
+                            "field": "4",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 10 records retrieved in 0.879ms"
+                    },
+                    "totalRowCount": 10,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "/* \n1.How do you select all columns from the Employees table?\n2. How do you select only the FirstName and LastName columns from the Employees table?\n3. How do you find all employees who work in the 'IT' department?\n4. How do you select employees with a salary greater than 70000?\n5. How do you sort the results by the last name in ascending order?   \n6. How do you select distinct departments from the Employees table?   \n7. How do you count the number of employees in each department?   \n8. How do you find the maximum salary in the Employees table?   \n9. How do you find the average salary of employees in the 'Finance' department?   \n10. How do you select employees whose name starts with 'M'?   \n11. How do you select employees who work in the 'IT' department and have a salary greater than 75000?\n12. How do you find employees who work in the 'HR' department or have a salary less than 60000?\n13. How do you select employees who do not work in the 'Finance' department?\n14. How do you find employees whose salary is between 60000 and 70000 and who work in the 'Finance' department?\n15. How do you find the employees who work in the 'IT' department and do not have a salary greater than 80000?\n16. How do you find employees who work in the 'HR' or 'Finance' departments and have a salary greater than 65000?\n17. How do you select employees whose last name starts with 'D' and do not work in the 'HR' department?\n18. How do you find employees who do not work in the 'IT' department and have a salary greater than 70000?\n19. How do you select employees who do not work in the 'IT' department and either have a salary greater than 75000 or have the first name 'Subena'?\n20. How do you find employees who do not work in the 'HR' or 'IT' department?\n21. Write a SQL query to find the names of customers who have placed an order.\n22. Find the list of customers who have not placed any orders.\n23. ist all orders along with the product name and price.\n24. Find the names of customers and their orders, including customers who have not placed any order.\n25. Retrieve a list of products that have never been ordered.\n26. Find the total number of orders placed by each customer.\n27. Display the customers, the products they have ordered, and the order date. Include customers who have not placed any orders.\n28. Identify pairs of customers who live in the same country.\n29. Find the customer who has spent the most on their orders.\n30. Find customers who have ordered more than one type of product.\n31. List all the products and their corresponding orders using a RIGHT JOIN, including products that have not been ordered.\n32. Find the name of customers who have ordered a product priced above $500.\n33. Find customers who have ordered the same product more than once. \n*/\nSELECT * FROM db.Employees",
+                    "updatable": true,
+                    "fullTableName": "db.Employees"
+                }
+            ]
         },
         {
             "state": {
-                "start": 112,
-                "end": 111,
+                "start": 147,
+                "end": 146,
                 "language": "mysql",
                 "currentSet": 1,
                 "statements": [
