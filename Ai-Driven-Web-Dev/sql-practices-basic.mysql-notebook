@@ -2,7 +2,7 @@
     "type": "MySQLNotebook",
     "version": "1.0",
     "caption": "DB Notebook",
-    "content": "\\about\n\nCREATE DATABASE db;\nCREATE TABLE db.Employees (\n\n    EmployeeID INT PRIMARY KEY,\n    FirstName VARCHAR(50),\n    LastName VARCHAR(50),\n    Department VARCHAR(50),\n    Salary DECIMAL(10, 2)\n\n);\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary) VALUES\n\n(1, 'John', 'Doe', 'HR', 55000.00),\n(2, 'Jane', 'Smith', 'IT', 75000.00),\n(3, 'Emily', 'Jones', 'Finance', 65000.00),\n(4, 'Michael', 'Brown', 'IT', 80000.00),\n(5, 'Sarah', 'Davis', 'HR', 60000.00),\n(6, 'David', 'Wilson', 'Finance', 70000.00),\n(7, 'Laura', 'Garcia', 'IT', 72000.00),\n(8, 'Robert', 'Miller', 'HR', 58000.00),\n(9, 'Sophia', 'Martinez', 'Finance', 67000.00),\n(10, 'James', 'Anderson', 'IT', 81000.00);\nSELECT * from db.employees limit 5;\n\nCREATE TABLE db.Customers (\nCustomerID int primary key,\nCustomerName VARCHAR(50),\nCountry VARCHAR(50)\n);\nINSERT INTO db.Customers (CustomerID, CustomerName, Country)\nVALUES\n(1, 'Alice', 'USA'),\n(2, 'Bob', 'UK'),\n(3, 'Charlie', 'Canada'),\n(4, 'David', 'USA'),\n(5, 'Eve', 'Australia');\n-- Create the Orders table\nCREATE TABLE db.Orders(\nOrderID INT PRIMARY KEY,\nCustomerID INT,\nOrderDate DATE,\nProductID INT,\nFOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)\n);\nINSERT INTO db.Orders (OrderID, CustomerID, OrderDate, ProductID)\nVALUES\n(101, 1, '2024-08-01', 1001),\n(102, 1, '2024-08-03', 1002),\n(103, 2, '2024-08-04', 1001),\n(104, 3, '2024-08-05', 1003),\n(105, 5, '2024-08-06', 1004);\nCREATE TABLE db.Products (\nProductID INT PRIMARY KEY,\nProductName VARCHAR(50),\nPrice DECIMAL(10, 2)\n);\nINSERT INTO db.Products (ProductID, ProductName, Price)\nVALUES\n(1001, 'Laptop', 1000),\n(1002, 'Smartphone', 700),\n(1003, 'Tablet', 500),\n(1004, 'Headphones', 200),\n(1005, 'Smartwatch', 300);\nSELECT * from db.products limit 3;\nSELECT * from db.customers limit 4;\nSELECT * FROM db.Employees;\n\n-- 2. How do you select only the FirstName and LastName columns from the Employees table?\nSELECT firstname,lastname from db.Employees limit 2;\n\n-- 3. How do you find all employees who work in the 'IT' department?\nSELECT * from db.employees LIMIT 2;\nSELECT firstname,lastname, Department from db.employees\nwhere Department = 'it'\norder by FirstName asc;\n;\n-- 4. How do you select employees with a salary greater than 70000?\nselect * from db.employees\nwhere Salary>70000\nORDER BY Salary DESC;\n\n",
+    "content": "\\about\n\nCREATE DATABASE db;\nCREATE TABLE db.Employees (\n\n    EmployeeID INT PRIMARY KEY,\n    FirstName VARCHAR(50),\n    LastName VARCHAR(50),\n    Department VARCHAR(50),\n    Salary DECIMAL(10, 2)\n\n);\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary) VALUES\n\n(1, 'John', 'Doe', 'HR', 55000.00),\n(2, 'Jane', 'Smith', 'IT', 75000.00),\n(3, 'Emily', 'Jones', 'Finance', 65000.00),\n(4, 'Michael', 'Brown', 'IT', 80000.00),\n(5, 'Sarah', 'Davis', 'HR', 60000.00),\n(6, 'David', 'Wilson', 'Finance', 70000.00),\n(7, 'Laura', 'Garcia', 'IT', 72000.00),\n(8, 'Robert', 'Miller', 'HR', 58000.00),\n(9, 'Sophia', 'Martinez', 'Finance', 67000.00),\n(10, 'James', 'Anderson', 'IT', 81000.00);\nSELECT * from db.employees limit 5;\n\nCREATE TABLE db.Customers (\nCustomerID int primary key,\nCustomerName VARCHAR(50),\nCountry VARCHAR(50)\n);\nINSERT INTO db.Customers (CustomerID, CustomerName, Country)\nVALUES\n(1, 'Alice', 'USA'),\n(2, 'Bob', 'UK'),\n(3, 'Charlie', 'Canada'),\n(4, 'David', 'USA'),\n(5, 'Eve', 'Australia');\n-- Create the Orders table\nCREATE TABLE db.Orders(\nOrderID INT PRIMARY KEY,\nCustomerID INT,\nOrderDate DATE,\nProductID INT,\nFOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)\n);\nINSERT INTO db.Orders (OrderID, CustomerID, OrderDate, ProductID)\nVALUES\n(101, 1, '2024-08-01', 1001),\n(102, 1, '2024-08-03', 1002),\n(103, 2, '2024-08-04', 1001),\n(104, 3, '2024-08-05', 1003),\n(105, 5, '2024-08-06', 1004);\nCREATE TABLE db.Products (\nProductID INT PRIMARY KEY,\nProductName VARCHAR(50),\nPrice DECIMAL(10, 2)\n);\nINSERT INTO db.Products (ProductID, ProductName, Price)\nVALUES\n(1001, 'Laptop', 1000),\n(1002, 'Smartphone', 700),\n(1003, 'Tablet', 500),\n(1004, 'Headphones', 200),\n(1005, 'Smartwatch', 300);\nSELECT * from db.products limit 3;\nSELECT * from db.customers limit 4;\nSELECT * FROM db.Employees;\n\n-- 2. How do you select only the FirstName and LastName columns from the Employees table?\nSELECT firstname,lastname from db.Employees limit 2;\n\n-- 3. How do you find all employees who work in the 'IT' department?\nSELECT * from db.employees LIMIT 2;\nSELECT firstname,lastname, Department from db.employees\nwhere Department = 'it'\norder by FirstName asc;\n;\n-- 4. How do you select employees with a salary greater than 70000?\nselect * from db.employees\nwhere Salary>70000\nORDER BY Salary DESC;\n\n-- 5. How do you sort the results by the last name in ascending order?   \nselect * from db.products;\nSELECT * from db.products\nORDER BY ProductName asc;\n",
     "options": {
         "tabSize": 4,
         "indentSize": 4,
@@ -15,22 +15,22 @@
             {
                 "inSelectionMode": false,
                 "selectionStart": {
-                    "lineNumber": 82,
-                    "column": 22
+                    "lineNumber": 88,
+                    "column": 1
                 },
                 "position": {
-                    "lineNumber": 82,
-                    "column": 22
+                    "lineNumber": 88,
+                    "column": 1
                 }
             }
         ],
         "viewState": {
             "scrollLeft": 0,
             "firstPosition": {
-                "lineNumber": 78,
+                "lineNumber": 84,
                 "column": 1
             },
-            "firstPositionDeltaTop": -12
+            "firstPositionDeltaTop": -2
         },
         "contributionsState": {
             "editor.contrib.folding": {},
@@ -944,7 +944,7 @@
                         "5a3452fe-8d3f-4ceb-bd13-f0a61ffec88b"
                     ]
                 },
-                "currentHeight": 175.484375,
+                "currentHeight": 36,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -1073,7 +1073,7 @@
                         "2d5bb930-d019-4c3b-d4bb-911ce86f47e0"
                     ]
                 },
-                "currentHeight": 175.484375,
+                "currentHeight": 36,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -1248,7 +1248,273 @@
         {
             "state": {
                 "start": 84,
-                "end": 84,
+                "end": 85,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "d3f3041e-fa54-4b8a-b994-d273e9a32ea2"
+                    ]
+                },
+                "currentHeight": 202.125,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 100
+                        },
+                        "contentStart": 74,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "42d8198a-cc8b-4f32-9abf-26502da412a6",
+                    "resultId": "d3f3041e-fa54-4b8a-b994-d273e9a32ea2",
+                    "rows": [
+                        {
+                            "0": 1001,
+                            "1": "Laptop",
+                            "2": "1000.00"
+                        },
+                        {
+                            "0": 1002,
+                            "1": "Smartphone",
+                            "2": "700.00"
+                        },
+                        {
+                            "0": 1003,
+                            "1": "Tablet",
+                            "2": "500.00"
+                        },
+                        {
+                            "0": 1004,
+                            "1": "Headphones",
+                            "2": "200.00"
+                        },
+                        {
+                            "0": 1005,
+                            "1": "Smartwatch",
+                            "2": "300.00"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "ProductID",
+                            "field": "0",
+                            "dataType": {
+                                "type": 4,
+                                "flags": [
+                                    "SIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 10,
+                                "parameterFormatType": "OneOrZero",
+                                "synonyms": [
+                                    "INTEGER",
+                                    "INT4"
+                                ]
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "ProductName",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        },
+                        {
+                            "title": "Price",
+                            "field": "2",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 5 records retrieved in 0.874ms"
+                    },
+                    "totalRowCount": 5,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "-- 5. How do you sort the results by the last name in ascending order?   \nselect * from db.products",
+                    "updatable": true,
+                    "fullTableName": "db.products"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 86,
+                "end": 87,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "110ced29-23cf-4999-e613-833a8c43570d"
+                    ]
+                },
+                "currentHeight": 202.125,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 51
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "42d8198a-cc8b-4f32-9abf-26502da412a6",
+                    "resultId": "110ced29-23cf-4999-e613-833a8c43570d",
+                    "rows": [
+                        {
+                            "0": 1004,
+                            "1": "Headphones",
+                            "2": "200.00"
+                        },
+                        {
+                            "0": 1001,
+                            "1": "Laptop",
+                            "2": "1000.00"
+                        },
+                        {
+                            "0": 1002,
+                            "1": "Smartphone",
+                            "2": "700.00"
+                        },
+                        {
+                            "0": 1005,
+                            "1": "Smartwatch",
+                            "2": "300.00"
+                        },
+                        {
+                            "0": 1003,
+                            "1": "Tablet",
+                            "2": "500.00"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "ProductID",
+                            "field": "0",
+                            "dataType": {
+                                "type": 4,
+                                "flags": [
+                                    "SIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 10,
+                                "parameterFormatType": "OneOrZero",
+                                "synonyms": [
+                                    "INTEGER",
+                                    "INT4"
+                                ]
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "ProductName",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        },
+                        {
+                            "title": "Price",
+                            "field": "2",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 5 records retrieved in 0.837ms"
+                    },
+                    "totalRowCount": 5,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT * from db.products\nORDER BY ProductName asc",
+                    "updatable": true,
+                    "fullTableName": "db.products"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 88,
+                "end": 88,
                 "language": "mysql",
                 "currentSet": 1,
                 "statements": [
