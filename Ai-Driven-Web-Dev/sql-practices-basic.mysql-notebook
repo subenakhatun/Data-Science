@@ -2,7 +2,7 @@
     "type": "MySQLNotebook",
     "version": "1.0",
     "caption": "DB Notebook",
-    "content": "\\about\n\nCREATE DATABASE db;\nCREATE TABLE db.Employees (\n\n    EmployeeID INT PRIMARY KEY,\n    FirstName VARCHAR(50),\n    LastName VARCHAR(50),\n    Department VARCHAR(50),\n    Salary DECIMAL(10, 2)\n\n);\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary) VALUES\n\n(1, 'John', 'Doe', 'HR', 55000.00),\n(2, 'Jane', 'Smith', 'IT', 75000.00),\n(3, 'Emily', 'Jones', 'Finance', 65000.00),\n(4, 'Michael', 'Brown', 'IT', 80000.00),\n(5, 'Sarah', 'Davis', 'HR', 60000.00),\n(6, 'David', 'Wilson', 'Finance', 70000.00),\n(7, 'Laura', 'Garcia', 'IT', 72000.00),\n(8, 'Robert', 'Miller', 'HR', 58000.00),\n(9, 'Sophia', 'Martinez', 'Finance', 67000.00),\n(10, 'James', 'Anderson', 'IT', 81000.00);\nSELECT * from db.employees;\n",
+    "content": "\\about\n\nCREATE DATABASE db;\nCREATE TABLE db.Employees (\n\n    EmployeeID INT PRIMARY KEY,\n    FirstName VARCHAR(50),\n    LastName VARCHAR(50),\n    Department VARCHAR(50),\n    Salary DECIMAL(10, 2)\n\n);\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary) VALUES\n\n(1, 'John', 'Doe', 'HR', 55000.00),\n(2, 'Jane', 'Smith', 'IT', 75000.00),\n(3, 'Emily', 'Jones', 'Finance', 65000.00),\n(4, 'Michael', 'Brown', 'IT', 80000.00),\n(5, 'Sarah', 'Davis', 'HR', 60000.00),\n(6, 'David', 'Wilson', 'Finance', 70000.00),\n(7, 'Laura', 'Garcia', 'IT', 72000.00),\n(8, 'Robert', 'Miller', 'HR', 58000.00),\n(9, 'Sophia', 'Martinez', 'Finance', 67000.00),\n(10, 'James', 'Anderson', 'IT', 81000.00);\nSELECT * from db.employees limit 5;\n\nCREATE TABLE db.Customers (\nCustomerID int primary key,\nCustomerName VARCHAR(50),\nCountry VARCHAR(50)\n);\nINSERT INTO db.Customers (CustomerID, CustomerName, Country)\nVALUES\n(1, 'Alice', 'USA'),\n(2, 'Bob', 'UK'),\n(3, 'Charlie', 'Canada'),\n(4, 'David', 'USA'),\n(5, 'Eve', 'Australia');\n-- Create the Orders table\nCREATE TABLE db.Orders(\nOrderID INT PRIMARY KEY,\nCustomerID INT,\nOrderDate DATE,\nProductID INT,\nFOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)\n);\nINSERT INTO db.Orders (OrderID, CustomerID, OrderDate, ProductID)\nVALUES\n(101, 1, '2024-08-01', 1001),\n(102, 1, '2024-08-03', 1002),\n(103, 2, '2024-08-04', 1001),\n(104, 3, '2024-08-05', 1003),\n(105, 5, '2024-08-06', 1004);\n",
     "options": {
         "tabSize": 4,
         "indentSize": 4,
@@ -15,11 +15,11 @@
             {
                 "inSelectionMode": false,
                 "selectionStart": {
-                    "lineNumber": 26,
+                    "lineNumber": 54,
                     "column": 1
                 },
                 "position": {
-                    "lineNumber": 26,
+                    "lineNumber": 54,
                     "column": 1
                 }
             }
@@ -27,10 +27,10 @@
         "viewState": {
             "scrollLeft": 0,
             "firstPosition": {
-                "lineNumber": 20,
+                "lineNumber": 37,
                 "column": 1
             },
-            "firstPositionDeltaTop": -16
+            "firstPositionDeltaTop": -1
         },
         "contributionsState": {
             "editor.contrib.folding": {},
@@ -149,7 +149,7 @@
                         }
                     ]
                 },
-                "currentHeight": 28.875,
+                "currentHeight": 28,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -173,17 +173,17 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "55985c7e-4453-437c-e1ac-543bea6e7842"
+                        "38ee2a69-a1d4-4f26-86b8-e5305cdba1d8"
                     ]
                 },
-                "currentHeight": 335.28125,
+                "currentHeight": 36,
                 "currentSet": 1,
                 "statements": [
                     {
                         "delimiter": ";",
                         "span": {
                             "start": 0,
-                            "length": 27
+                            "length": 35
                         },
                         "contentStart": 0,
                         "state": 0
@@ -193,7 +193,7 @@
             "data": [
                 {
                     "tabId": "5cb33205-6461-4e72-e94d-c5404b4df5fd",
-                    "resultId": "55985c7e-4453-437c-e1ac-543bea6e7842",
+                    "resultId": "38ee2a69-a1d4-4f26-86b8-e5305cdba1d8",
                     "rows": [
                         {
                             "0": 1,
@@ -229,41 +229,6 @@
                             "2": "Davis",
                             "3": "HR",
                             "4": "60000.00"
-                        },
-                        {
-                            "0": 6,
-                            "1": "David",
-                            "2": "Wilson",
-                            "3": "Finance",
-                            "4": "70000.00"
-                        },
-                        {
-                            "0": 7,
-                            "1": "Laura",
-                            "2": "Garcia",
-                            "3": "IT",
-                            "4": "72000.00"
-                        },
-                        {
-                            "0": 8,
-                            "1": "Robert",
-                            "2": "Miller",
-                            "3": "HR",
-                            "4": "58000.00"
-                        },
-                        {
-                            "0": 9,
-                            "1": "Sophia",
-                            "2": "Martinez",
-                            "3": "Finance",
-                            "4": "67000.00"
-                        },
-                        {
-                            "0": 10,
-                            "1": "James",
-                            "2": "Anderson",
-                            "3": "IT",
-                            "4": "81000.00"
                         }
                     ],
                     "columns": [
@@ -369,13 +334,13 @@
                         }
                     ],
                     "executionInfo": {
-                        "text": "OK, 10 records retrieved in 1.386ms"
+                        "text": "OK, 5 records retrieved in 0.803ms"
                     },
-                    "totalRowCount": 10,
+                    "totalRowCount": 5,
                     "hasMoreRows": false,
                     "currentPage": 0,
                     "index": 0,
-                    "sql": "SELECT * from db.employees",
+                    "sql": "SELECT * from db.employees limit 5",
                     "updatable": true,
                     "fullTableName": "db.employees"
                 }
@@ -384,7 +349,144 @@
         {
             "state": {
                 "start": 26,
-                "end": 26,
+                "end": 31,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "7c367131-063f-419d-c0c1-956eaceb9399",
+                            "content": "OK, 0 records retrieved in 77.652ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 105
+                        },
+                        "contentStart": 1,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 105,
+                            "length": 0
+                        },
+                        "contentStart": 104,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 32,
+                "end": 38,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "f2986070-d178-4662-c0aa-43822274e3f1",
+                            "content": "OK, 5 rows affected in 32.401ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28.875,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 178
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 39,
+                "end": 46,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "2ba00c92-a1b2-43e4-8dcc-b7f2022c2482",
+                            "content": "OK, 0 records retrieved in 104.342ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28.875,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 183
+                        },
+                        "contentStart": 27,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 47,
+                "end": 53,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "a9950bba-dd2a-4ec0-e415-27c5749b6633",
+                            "content": "OK, 5 rows affected in 10.751ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28.875,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 222
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 54,
+                "end": 54,
                 "language": "mysql",
                 "currentSet": 1,
                 "statements": [
