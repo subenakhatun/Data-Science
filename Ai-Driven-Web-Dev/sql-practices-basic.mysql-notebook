@@ -2,7 +2,7 @@
     "type": "MySQLNotebook",
     "version": "1.0",
     "caption": "DB Notebook",
-    "content": "\\about\n\nCREATE DATABASE db;\nCREATE TABLE db.Employees (\n\n    EmployeeID INT PRIMARY KEY,\n    FirstName VARCHAR(50),\n    LastName VARCHAR(50),\n    Department VARCHAR(50),\n    Salary DECIMAL(10, 2)\n\n);\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary) VALUES\n\n(1, 'John', 'Doe', 'HR', 55000.00),\n(2, 'Jane', 'Smith', 'IT', 75000.00),\n(3, 'Emily', 'Jones', 'Finance', 65000.00),\n(4, 'Michael', 'Brown', 'IT', 80000.00),\n(5, 'Sarah', 'Davis', 'HR', 60000.00),\n(6, 'David', 'Wilson', 'Finance', 70000.00),\n(7, 'Laura', 'Garcia', 'IT', 72000.00),\n(8, 'Robert', 'Miller', 'HR', 58000.00),\n(9, 'Sophia', 'Martinez', 'Finance', 67000.00),\n(10, 'James', 'Anderson', 'IT', 81000.00);\nSELECT * from db.employees limit 5;\n\nCREATE TABLE db.Customers (\nCustomerID int primary key,\nCustomerName VARCHAR(50),\nCountry VARCHAR(50)\n);\nINSERT INTO db.Customers (CustomerID, CustomerName, Country)\nVALUES\n(1, 'Alice', 'USA'),\n(2, 'Bob', 'UK'),\n(3, 'Charlie', 'Canada'),\n(4, 'David', 'USA'),\n(5, 'Eve', 'Australia');\n-- Create the Orders table\nCREATE TABLE db.Orders(\nOrderID INT PRIMARY KEY,\nCustomerID INT,\nOrderDate DATE,\nProductID INT,\nFOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)\n);\nINSERT INTO db.Orders (OrderID, CustomerID, OrderDate, ProductID)\nVALUES\n(101, 1, '2024-08-01', 1001),\n(102, 1, '2024-08-03', 1002),\n(103, 2, '2024-08-04', 1001),\n(104, 3, '2024-08-05', 1003),\n(105, 5, '2024-08-06', 1004);\nCREATE TABLE db.Products (\nProductID INT PRIMARY KEY,\nProductName VARCHAR(50),\nPrice DECIMAL(10, 2)\n);\nINSERT INTO db.Products (ProductID, ProductName, Price)\nVALUES\n(1001, 'Laptop', 1000),\n(1002, 'Smartphone', 700),\n(1003, 'Tablet', 500),\n(1004, 'Headphones', 200),\n(1005, 'Smartwatch', 300);\nSELECT * from db.products limit 3;\nSELECT * from db.customers limit 4;\n",
+    "content": "\\about\n\nCREATE DATABASE db;\nCREATE TABLE db.Employees (\n\n    EmployeeID INT PRIMARY KEY,\n    FirstName VARCHAR(50),\n    LastName VARCHAR(50),\n    Department VARCHAR(50),\n    Salary DECIMAL(10, 2)\n\n);\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary) VALUES\n\n(1, 'John', 'Doe', 'HR', 55000.00),\n(2, 'Jane', 'Smith', 'IT', 75000.00),\n(3, 'Emily', 'Jones', 'Finance', 65000.00),\n(4, 'Michael', 'Brown', 'IT', 80000.00),\n(5, 'Sarah', 'Davis', 'HR', 60000.00),\n(6, 'David', 'Wilson', 'Finance', 70000.00),\n(7, 'Laura', 'Garcia', 'IT', 72000.00),\n(8, 'Robert', 'Miller', 'HR', 58000.00),\n(9, 'Sophia', 'Martinez', 'Finance', 67000.00),\n(10, 'James', 'Anderson', 'IT', 81000.00);\nSELECT * from db.employees limit 5;\n\nCREATE TABLE db.Customers (\nCustomerID int primary key,\nCustomerName VARCHAR(50),\nCountry VARCHAR(50)\n);\nINSERT INTO db.Customers (CustomerID, CustomerName, Country)\nVALUES\n(1, 'Alice', 'USA'),\n(2, 'Bob', 'UK'),\n(3, 'Charlie', 'Canada'),\n(4, 'David', 'USA'),\n(5, 'Eve', 'Australia');\n-- Create the Orders table\nCREATE TABLE db.Orders(\nOrderID INT PRIMARY KEY,\nCustomerID INT,\nOrderDate DATE,\nProductID INT,\nFOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)\n);\nINSERT INTO db.Orders (OrderID, CustomerID, OrderDate, ProductID)\nVALUES\n(101, 1, '2024-08-01', 1001),\n(102, 1, '2024-08-03', 1002),\n(103, 2, '2024-08-04', 1001),\n(104, 3, '2024-08-05', 1003),\n(105, 5, '2024-08-06', 1004);\nCREATE TABLE db.Products (\nProductID INT PRIMARY KEY,\nProductName VARCHAR(50),\nPrice DECIMAL(10, 2)\n);\nINSERT INTO db.Products (ProductID, ProductName, Price)\nVALUES\n(1001, 'Laptop', 1000),\n(1002, 'Smartphone', 700),\n(1003, 'Tablet', 500),\n(1004, 'Headphones', 200),\n(1005, 'Smartwatch', 300);\nSELECT * from db.products limit 3;\nSELECT * from db.customers limit 4;\n/*\nHow do you select all columns from the Employees table?\nHow do you select only the FirstName and LastName columns from the Employees table?\nHow do you find all employees who work in the 'IT' department?\nHow do you select employees with a salary greater than 70000?\nHow do you sort the results by the last name in ascending order?   \nHow do you select distinct departments from the Employees table?   \nHow do you count the number of employees in each department?   \nHow do you find the maximum salary in the Employees table?   \nHow do you find the average salary of employees in the 'Finance' department?   \nHow do you select employees whose name starts with 'M'?   \nHow do you select employees who work in the 'IT' department and have a salary greater than 75000?\nHow do you find employees who work in the 'HR' department or have a salary less than 60000?\nHow do you select employees who do not work in the 'Finance' department?\nHow do you find employees whose salary is between 60000 and 70000 and who work in the 'Finance' department?\nHow do you find the employees who work in the 'IT' department and do not have a salary greater than 80000?\nHow do you find employees who work in the 'HR' or 'Finance' departments and have a salary greater than 65000?\nHow do you select employees whose last name starts with 'D' and do not work in the 'HR' department?\nHow do you find employees who do not work in the 'IT' department and have a salary greater than 70000?\nHow do you select employees who do not work in the 'IT' department and either have a salary greater than 75000 or have the first name 'Subena'?\nHow do you find employees who do not work in the 'HR' or 'IT' department?\nWrite a SQL query to find the names of customers who have placed an order.\nFind the list of customers who have not placed any orders.\nList all orders along with the product name and price.\nFind the names of customers and their orders, including customers who have not placed any order.\nRetrieve a list of products that have never been ordered.\nFind the total number of orders placed by each customer.\nDisplay the customers, the products they have ordered, and the order date. Include customers who have not placed any orders.\nIdentify pairs of customers who live in the same country.\nFind the customer who has spent the most on their orders.\nFind customers who have ordered more than one type of product.\nList all the products and their corresponding orders using a RIGHT JOIN, including products that have not been ordered.\nFind the name of customers who have ordered a product priced above $500.\nFind customers who have ordered the same product more than once.\n*/",
     "options": {
         "tabSize": 4,
         "indentSize": 4,
@@ -15,11 +15,11 @@
             {
                 "inSelectionMode": false,
                 "selectionStart": {
-                    "lineNumber": 68,
+                    "lineNumber": 101,
                     "column": 1
                 },
                 "position": {
-                    "lineNumber": 68,
+                    "lineNumber": 101,
                     "column": 1
                 }
             }
@@ -27,10 +27,10 @@
         "viewState": {
             "scrollLeft": 0,
             "firstPosition": {
-                "lineNumber": 62,
+                "lineNumber": 67,
                 "column": 1
             },
-            "firstPositionDeltaTop": -4
+            "firstPositionDeltaTop": 127
         },
         "contributionsState": {
             "editor.contrib.folding": {},
@@ -531,7 +531,7 @@
                         }
                     ]
                 },
-                "currentHeight": 28.875,
+                "currentHeight": 28,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -678,7 +678,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "46c4fd08-bfa2-4824-f163-ae62e2a3ed6f"
+                        "ed538941-230d-44f8-b693-395f83b71526"
                     ]
                 },
                 "currentHeight": 175.484375,
@@ -698,7 +698,7 @@
             "data": [
                 {
                     "tabId": "5cb33205-6461-4e72-e94d-c5404b4df5fd",
-                    "resultId": "46c4fd08-bfa2-4824-f163-ae62e2a3ed6f",
+                    "resultId": "ed538941-230d-44f8-b693-395f83b71526",
                     "rows": [
                         {
                             "0": 1,
@@ -782,7 +782,7 @@
                         }
                     ],
                     "executionInfo": {
-                        "text": "OK, 4 records retrieved in 3.904ms"
+                        "text": "OK, 4 records retrieved in 1.855ms"
                     },
                     "totalRowCount": 4,
                     "hasMoreRows": false,
@@ -805,10 +805,10 @@
                         "delimiter": ";",
                         "span": {
                             "start": 0,
-                            "length": 0
+                            "length": 6
                         },
-                        "contentStart": 0,
-                        "state": 0
+                        "contentStart": -1,
+                        "state": 3
                     }
                 ]
             },
