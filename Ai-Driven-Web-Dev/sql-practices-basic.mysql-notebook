@@ -2,7 +2,7 @@
     "type": "MySQLNotebook",
     "version": "1.0",
     "caption": "DB Notebook",
-    "content": "\\about\n\nCREATE DATABASE db;\nCREATE TABLE db.Employees (\n\n    EmployeeID INT PRIMARY KEY,\n    FirstName VARCHAR(50),\n    LastName VARCHAR(50),\n    Department VARCHAR(50),\n    Salary DECIMAL(10, 2)\n\n);\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary) VALUES\n\n(1, 'John', 'Doe', 'HR', 55000.00),\n(2, 'Jane', 'Smith', 'IT', 75000.00),\n(3, 'Emily', 'Jones', 'Finance', 65000.00),\n(4, 'Michael', 'Brown', 'IT', 80000.00),\n(5, 'Sarah', 'Davis', 'HR', 60000.00),\n(6, 'David', 'Wilson', 'Finance', 70000.00),\n(7, 'Laura', 'Garcia', 'IT', 72000.00),\n(8, 'Robert', 'Miller', 'HR', 58000.00),\n(9, 'Sophia', 'Martinez', 'Finance', 67000.00),\n(10, 'James', 'Anderson', 'IT', 81000.00);\nSELECT * from db.employees limit 5;\n\nCREATE TABLE db.Customers (\nCustomerID int primary key,\nCustomerName VARCHAR(50),\nCountry VARCHAR(50)\n);\nINSERT INTO db.Customers (CustomerID, CustomerName, Country)\nVALUES\n(1, 'Alice', 'USA'),\n(2, 'Bob', 'UK'),\n(3, 'Charlie', 'Canada'),\n(4, 'David', 'USA'),\n(5, 'Eve', 'Australia');\n-- Create the Orders table\nCREATE TABLE db.Orders(\nOrderID INT PRIMARY KEY,\nCustomerID INT,\nOrderDate DATE,\nProductID INT,\nFOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)\n);\nINSERT INTO db.Orders (OrderID, CustomerID, OrderDate, ProductID)\nVALUES\n(101, 1, '2024-08-01', 1001),\n(102, 1, '2024-08-03', 1002),\n(103, 2, '2024-08-04', 1001),\n(104, 3, '2024-08-05', 1003),\n(105, 5, '2024-08-06', 1004);\nCREATE TABLE db.Products (\nProductID INT PRIMARY KEY,\nProductName VARCHAR(50),\nPrice DECIMAL(10, 2)\n);\nINSERT INTO db.Products (ProductID, ProductName, Price)\nVALUES\n(1001, 'Laptop', 1000),\n(1002, 'Smartphone', 700),\n(1003, 'Tablet', 500),\n(1004, 'Headphones', 200),\n(1005, 'Smartwatch', 300);\nSELECT * from db.products limit 3;\nSELECT * from db.customers limit 4;\nSELECT * FROM db.Employees;\n\n-- 2. How do you select only the FirstName and LastName columns from the Employees table?\nSELECT firstname,lastname from db.Employees limit 2;\n\n-- 3. How do you find all employees who work in the 'IT' department?\nSELECT * from db.employees LIMIT 2;\nSELECT firstname,lastname, Department from db.employees\nwhere Department = 'it'\norder by FirstName asc;\n;\n-- 4. How do you select employees with a salary greater than 70000?\nselect * from db.employees\nwhere Salary>70000\nORDER BY Salary DESC;\n\n-- 5. How do you sort the results by the last name in ascending order?   \nselect * from db.products;\nSELECT * from db.products\nORDER BY ProductName asc;\n",
+    "content": "\\about\n\nCREATE DATABASE db;\nCREATE TABLE db.Employees (\n\n    EmployeeID INT PRIMARY KEY,\n    FirstName VARCHAR(50),\n    LastName VARCHAR(50),\n    Department VARCHAR(50),\n    Salary DECIMAL(10, 2)\n\n);\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary) VALUES\n\n(1, 'John', 'Doe', 'HR', 55000.00),\n(2, 'Jane', 'Smith', 'IT', 75000.00),\n(3, 'Emily', 'Jones', 'Finance', 65000.00),\n(4, 'Michael', 'Brown', 'IT', 80000.00),\n(5, 'Sarah', 'Davis', 'HR', 60000.00),\n(6, 'David', 'Wilson', 'Finance', 70000.00),\n(7, 'Laura', 'Garcia', 'IT', 72000.00),\n(8, 'Robert', 'Miller', 'HR', 58000.00),\n(9, 'Sophia', 'Martinez', 'Finance', 67000.00),\n(10, 'James', 'Anderson', 'IT', 81000.00);\nSELECT * from db.employees limit 5;\n\nCREATE TABLE db.Customers (\nCustomerID int primary key,\nCustomerName VARCHAR(50),\nCountry VARCHAR(50)\n);\nINSERT INTO db.Customers (CustomerID, CustomerName, Country)\nVALUES\n(1, 'Alice', 'USA'),\n(2, 'Bob', 'UK'),\n(3, 'Charlie', 'Canada'),\n(4, 'David', 'USA'),\n(5, 'Eve', 'Australia');\n-- Create the Orders table\nCREATE TABLE db.Orders(\nOrderID INT PRIMARY KEY,\nCustomerID INT,\nOrderDate DATE,\nProductID INT,\nFOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)\n);\nINSERT INTO db.Orders (OrderID, CustomerID, OrderDate, ProductID)\nVALUES\n(101, 1, '2024-08-01', 1001),\n(102, 1, '2024-08-03', 1002),\n(103, 2, '2024-08-04', 1001),\n(104, 3, '2024-08-05', 1003),\n(105, 5, '2024-08-06', 1004);\nCREATE TABLE db.Products (\nProductID INT PRIMARY KEY,\nProductName VARCHAR(50),\nPrice DECIMAL(10, 2)\n);\nINSERT INTO db.Products (ProductID, ProductName, Price)\nVALUES\n(1001, 'Laptop', 1000),\n(1002, 'Smartphone', 700),\n(1003, 'Tablet', 500),\n(1004, 'Headphones', 200),\n(1005, 'Smartwatch', 300);\nSELECT * from db.products limit 3;\nSELECT * from db.customers limit 4;\nSELECT * FROM db.Employees;\n\n-- 2. How do you select only the FirstName and LastName columns from the Employees table?\nSELECT firstname,lastname from db.Employees limit 2;\n\n-- 3. How do you find all employees who work in the 'IT' department?\nSELECT * from db.employees LIMIT 2;\nSELECT firstname,lastname, Department from db.employees\nwhere Department = 'it'\norder by FirstName asc;\n;\n-- 4. How do you select employees with a salary greater than 70000?\nselect * from db.employees\nwhere Salary>70000\nORDER BY Salary DESC;\n\n-- 5. How do you sort the results by the last name in ascending order?   \nselect * from db.products;\nSELECT * from db.products\nORDER BY ProductName asc;\n-- 6. How do you select distinct departments from the Employees table?   \nselect DISTINCT department from db.employees;\n",
     "options": {
         "tabSize": 4,
         "indentSize": 4,
@@ -15,22 +15,22 @@
             {
                 "inSelectionMode": false,
                 "selectionStart": {
-                    "lineNumber": 88,
-                    "column": 1
+                    "lineNumber": 89,
+                    "column": 46
                 },
                 "position": {
-                    "lineNumber": 88,
-                    "column": 1
+                    "lineNumber": 89,
+                    "column": 46
                 }
             }
         ],
         "viewState": {
             "scrollLeft": 0,
             "firstPosition": {
-                "lineNumber": 84,
+                "lineNumber": 86,
                 "column": 1
             },
-            "firstPositionDeltaTop": -2
+            "firstPositionDeltaTop": 36
         },
         "contributionsState": {
             "editor.contrib.folding": {},
@@ -1514,7 +1514,89 @@
         {
             "state": {
                 "start": 88,
-                "end": 88,
+                "end": 89,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "81de3d0d-8a81-43e7-94eb-1f560973b7c3"
+                    ]
+                },
+                "currentHeight": 148.859375,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 119
+                        },
+                        "contentStart": 74,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 119,
+                            "length": 0
+                        },
+                        "contentStart": 118,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "42d8198a-cc8b-4f32-9abf-26502da412a6",
+                    "resultId": "81de3d0d-8a81-43e7-94eb-1f560973b7c3",
+                    "rows": [
+                        {
+                            "0": "HR"
+                        },
+                        {
+                            "0": "IT"
+                        },
+                        {
+                            "0": "Finance"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "department",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 3 records retrieved in 0.6ms"
+                    },
+                    "totalRowCount": 3,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "-- 6. How do you select distinct departments from the Employees table?   \nselect DISTINCT department from db.employees",
+                    "updatable": false,
+                    "fullTableName": ""
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 90,
+                "end": 90,
                 "language": "mysql",
                 "currentSet": 1,
                 "statements": [
