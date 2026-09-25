@@ -2,7 +2,7 @@
     "type": "MySQLNotebook",
     "version": "1.0",
     "caption": "DB Notebook",
-    "content": "\\about\n\nCREATE DATABASE db;\nCREATE TABLE db.Employees (\n\n    EmployeeID INT PRIMARY KEY,\n    FirstName VARCHAR(50),\n    LastName VARCHAR(50),\n    Department VARCHAR(50),\n    Salary DECIMAL(10, 2)\n\n);\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary) VALUES\n\n(1, 'John', 'Doe', 'HR', 55000.00),\n(2, 'Jane', 'Smith', 'IT', 75000.00),\n(3, 'Emily', 'Jones', 'Finance', 65000.00),\n(4, 'Michael', 'Brown', 'IT', 80000.00),\n(5, 'Sarah', 'Davis', 'HR', 60000.00),\n(6, 'David', 'Wilson', 'Finance', 70000.00),\n(7, 'Laura', 'Garcia', 'IT', 72000.00),\n(8, 'Robert', 'Miller', 'HR', 58000.00),\n(9, 'Sophia', 'Martinez', 'Finance', 67000.00),\n(10, 'James', 'Anderson', 'IT', 81000.00);\nSELECT * from db.employees limit 5;\n\nCREATE TABLE db.Customers (\nCustomerID int primary key,\nCustomerName VARCHAR(50),\nCountry VARCHAR(50)\n);\nINSERT INTO db.Customers (CustomerID, CustomerName, Country)\nVALUES\n(1, 'Alice', 'USA'),\n(2, 'Bob', 'UK'),\n(3, 'Charlie', 'Canada'),\n(4, 'David', 'USA'),\n(5, 'Eve', 'Australia');\n-- Create the Orders table\nCREATE TABLE db.Orders(\nOrderID INT PRIMARY KEY,\nCustomerID INT,\nOrderDate DATE,\nProductID INT,\nFOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)\n);\nINSERT INTO db.Orders (OrderID, CustomerID, OrderDate, ProductID)\nVALUES\n(101, 1, '2024-08-01', 1001),\n(102, 1, '2024-08-03', 1002),\n(103, 2, '2024-08-04', 1001),\n(104, 3, '2024-08-05', 1003),\n(105, 5, '2024-08-06', 1004);\nCREATE TABLE db.Products (\nProductID INT PRIMARY KEY,\nProductName VARCHAR(50),\nPrice DECIMAL(10, 2)\n);\nINSERT INTO db.Products (ProductID, ProductName, Price)\nVALUES\n(1001, 'Laptop', 1000),\n(1002, 'Smartphone', 700),\n(1003, 'Tablet', 500),\n(1004, 'Headphones', 200),\n(1005, 'Smartwatch', 300);\nSELECT * from db.products limit 3;\nSELECT * from db.customers limit 4;\nSELECT * FROM db.Employees;\n\n-- 2. How do you select only the FirstName and LastName columns from the Employees table?\nSELECT firstname,lastname from db.Employees limit 2;\n\n-- 3. How do you find all employees who work in the 'IT' department?\nSELECT * from db.employees LIMIT 2;\nSELECT firstname,lastname, Department from db.employees\nwhere Department = 'it'\norder by FirstName asc;\n;\n-- 4. How do you select employees with a salary greater than 70000?\nselect * from db.employees\nwhere Salary>70000\nORDER BY Salary DESC;\n\n-- 5. How do you sort the results by the last name in ascending order?   \nselect * from db.products;\nSELECT * from db.products\nORDER BY ProductName asc;\n-- 6. How do you select distinct departments from the Employees table?   \nselect DISTINCT department from db.employees;\n-- 7. How do you count the number of employees in each department?   \nSELECT EmployeeID, FirstName, COUNT(FirstName) \nFROM db.employees \nGROUP BY EmployeeID, FirstName;\n-- 8. How do you find the maximum salary in the Employees table?   \nselect firstname, max(salary)\nfrom  db.employees\ngroup by firstname\n;\n-- 9. How do you find the average salary of employees in the 'Finance' department?   \nSELECT firstname, AVG(salary) as avgsalary\nFROM db.employees\nGROUP by firstname\nORDER BY avgsalary DESC;\n-- 9. How do you find the average salary of employees in the 'Finance' department?   \nSELECT firstname,department, AVG(salary) as avgsalary\nFROM db.employees\nWHERE department = 'finance'\nGROUP by firstname;\n-- 10. How do you select employees whose name starts with 'M'?   \nSELECT * from db.employees\nwhere FirstName like 'M%';\n-- 11. How do you select employees who work in the 'IT' department and have a salary greater than 75000?\nSELECT firstname, salary, Department FROM db.employees\nWHERE department = 'it' and salary > 75000;\n-- 12. How do you find employees who work in the 'HR' department or have a salary less than 60000?\nSELECT firstname, salary, Department FROM db.employees\nWHERE department = 'HR' and salary < 60000;\n-- 13. How do you select employees who do not work in the 'Finance' department?\nSELECT firstname,department from db.employees\nWHERE Department !='Finance'\nORDER BY  department;\n-- 14. How do you find employees whose salary is between 60000 and 70000 and who work in the 'Finance' department?\nSELECT FirstName, salary, department from db.employees\nWHERE Department = 'finance' and Salary BETWEEN 60000 and 70000;\n\n\n-- 15. How do you find the employees who work in the 'IT' department and do not have a salary greater than 80000?\nSELECT FirstName, salary, department from db.employees\nWHERE Department = 'it' and Salary > 80000;\n",
+    "content": "\\about\n\nCREATE DATABASE db;\nCREATE TABLE db.Employees (\n\n    EmployeeID INT PRIMARY KEY,\n    FirstName VARCHAR(50),\n    LastName VARCHAR(50),\n    Department VARCHAR(50),\n    Salary DECIMAL(10, 2)\n\n);\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary) VALUES\n\n(1, 'John', 'Doe', 'HR', 55000.00),\n(2, 'Jane', 'Smith', 'IT', 75000.00),\n(3, 'Emily', 'Jones', 'Finance', 65000.00),\n(4, 'Michael', 'Brown', 'IT', 80000.00),\n(5, 'Sarah', 'Davis', 'HR', 60000.00),\n(6, 'David', 'Wilson', 'Finance', 70000.00),\n(7, 'Laura', 'Garcia', 'IT', 72000.00),\n(8, 'Robert', 'Miller', 'HR', 58000.00),\n(9, 'Sophia', 'Martinez', 'Finance', 67000.00),\n(10, 'James', 'Anderson', 'IT', 81000.00);\nSELECT * from db.employees limit 5;\n\nCREATE TABLE db.Customers (\nCustomerID int primary key,\nCustomerName VARCHAR(50),\nCountry VARCHAR(50)\n);\nINSERT INTO db.Customers (CustomerID, CustomerName, Country)\nVALUES\n(1, 'Alice', 'USA'),\n(2, 'Bob', 'UK'),\n(3, 'Charlie', 'Canada'),\n(4, 'David', 'USA'),\n(5, 'Eve', 'Australia');\n-- Create the Orders table\nCREATE TABLE db.Orders(\nOrderID INT PRIMARY KEY,\nCustomerID INT,\nOrderDate DATE,\nProductID INT,\nFOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)\n);\nINSERT INTO db.Orders (OrderID, CustomerID, OrderDate, ProductID)\nVALUES\n(101, 1, '2024-08-01', 1001),\n(102, 1, '2024-08-03', 1002),\n(103, 2, '2024-08-04', 1001),\n(104, 3, '2024-08-05', 1003),\n(105, 5, '2024-08-06', 1004);\nCREATE TABLE db.Products (\nProductID INT PRIMARY KEY,\nProductName VARCHAR(50),\nPrice DECIMAL(10, 2)\n);\nINSERT INTO db.Products (ProductID, ProductName, Price)\nVALUES\n(1001, 'Laptop', 1000),\n(1002, 'Smartphone', 700),\n(1003, 'Tablet', 500),\n(1004, 'Headphones', 200),\n(1005, 'Smartwatch', 300);\nSELECT * from db.products limit 3;\nSELECT * from db.customers limit 4;\nSELECT * FROM db.Employees;\n\n-- 2. How do you select only the FirstName and LastName columns from the Employees table?\nSELECT firstname,lastname from db.Employees limit 2;\n\n-- 3. How do you find all employees who work in the 'IT' department?\nSELECT * from db.employees LIMIT 2;\nSELECT firstname,lastname, Department from db.employees\nwhere Department = 'it'\norder by FirstName asc;\n;\n-- 4. How do you select employees with a salary greater than 70000?\nselect * from db.employees\nwhere Salary>70000\nORDER BY Salary DESC;\n\n-- 5. How do you sort the results by the last name in ascending order?   \nselect * from db.products;\nSELECT * from db.products\nORDER BY ProductName asc;\n-- 6. How do you select distinct departments from the Employees table?   \nselect DISTINCT department from db.employees;\n-- 7. How do you count the number of employees in each department?   \nSELECT EmployeeID, FirstName, COUNT(FirstName) \nFROM db.employees \nGROUP BY EmployeeID, FirstName;\n-- 8. How do you find the maximum salary in the Employees table?   \nselect firstname, max(salary)\nfrom  db.employees\ngroup by firstname\n;\n-- 9. How do you find the average salary of employees in the 'Finance' department?   \nSELECT firstname, AVG(salary) as avgsalary\nFROM db.employees\nGROUP by firstname\nORDER BY avgsalary DESC;\n-- 9. How do you find the average salary of employees in the 'Finance' department?   \nSELECT firstname,department, AVG(salary) as avgsalary\nFROM db.employees\nWHERE department = 'finance'\nGROUP by firstname;\n-- 10. How do you select employees whose name starts with 'M'?   \nSELECT * from db.employees\nwhere FirstName like 'M%';\n-- 11. How do you select employees who work in the 'IT' department and have a salary greater than 75000?\nSELECT firstname, salary, Department FROM db.employees\nWHERE department = 'it' and salary > 75000;\n-- 12. How do you find employees who work in the 'HR' department or have a salary less than 60000?\nSELECT firstname, salary, Department FROM db.employees\nWHERE department = 'HR' and salary < 60000;\n-- 13. How do you select employees who do not work in the 'Finance' department?\nSELECT firstname,department from db.employees\nWHERE Department !='Finance'\nORDER BY  department;\n-- 14. How do you find employees whose salary is between 60000 and 70000 and who work in the 'Finance' department?\nSELECT FirstName, salary, department from db.employees\nWHERE Department = 'finance' and Salary BETWEEN 60000 and 70000;\n\n\n-- 15. How do you find the employees who work in the 'IT' department and do not have a salary greater than 80000?\nSELECT FirstName, salary, department from db.employees\nWHERE Department = 'it' and Salary <= 80000;\n-- 16. How do you find employees who work in the 'HR' or 'Finance' departments and have a salary greater than 65000?\nSELECT FirstName, salary, department from db.employees\nWHERE Department = ('it' or 'hr') and Salary >= 65000;\n",
     "options": {
         "tabSize": 4,
         "indentSize": 4,
@@ -15,11 +15,11 @@
             {
                 "inSelectionMode": false,
                 "selectionStart": {
-                    "lineNumber": 130,
+                    "lineNumber": 133,
                     "column": 1
                 },
                 "position": {
-                    "lineNumber": 130,
+                    "lineNumber": 133,
                     "column": 1
                 }
             }
@@ -27,10 +27,10 @@
         "viewState": {
             "scrollLeft": 0,
             "firstPosition": {
-                "lineNumber": 122,
+                "lineNumber": 129,
                 "column": 1
             },
-            "firstPositionDeltaTop": 47
+            "firstPositionDeltaTop": -17
         },
         "contributionsState": {
             "editor.contrib.folding": {},
@@ -2519,7 +2519,7 @@
                         "328a1d02-c4a3-461d-d1cf-a019bd6b3470"
                     ]
                 },
-                "currentHeight": 255.375,
+                "currentHeight": 36,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -2629,7 +2629,7 @@
                         "6b424236-3a94-49e9-cd42-ff0c87fe5b5b"
                     ]
                 },
-                "currentHeight": 148.859375,
+                "currentHeight": 36,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -2754,17 +2754,17 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "460ddc41-155d-4efc-9ee9-d21ae7e0c2ca"
+                        "86515f23-e5e1-4c16-bc98-1dfd5112eb97"
                     ]
                 },
-                "currentHeight": 95.59375,
+                "currentHeight": 148.859375,
                 "currentSet": 1,
                 "statements": [
                     {
                         "delimiter": ";",
                         "span": {
                             "start": 0,
-                            "length": 212
+                            "length": 213
                         },
                         "contentStart": 114,
                         "state": 0
@@ -2774,8 +2774,157 @@
             "data": [
                 {
                     "tabId": "42d8198a-cc8b-4f32-9abf-26502da412a6",
-                    "resultId": "460ddc41-155d-4efc-9ee9-d21ae7e0c2ca",
+                    "resultId": "86515f23-e5e1-4c16-bc98-1dfd5112eb97",
                     "rows": [
+                        {
+                            "0": "Jane",
+                            "1": "75000.00",
+                            "2": "IT"
+                        },
+                        {
+                            "0": "Michael",
+                            "1": "80000.00",
+                            "2": "IT"
+                        },
+                        {
+                            "0": "Laura",
+                            "1": "72000.00",
+                            "2": "IT"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "FirstName",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "salary",
+                            "field": "1",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "department",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 3 records retrieved in 0.683ms"
+                    },
+                    "totalRowCount": 3,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "-- 15. How do you find the employees who work in the 'IT' department and do not have a salary greater than 80000?\nSELECT FirstName, salary, department from db.employees\nWHERE Department = 'it' and Salary <= 80000",
+                    "updatable": false,
+                    "fullTableName": "db.employees"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 130,
+                "end": 132,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "b0264690-aea5-422a-b5fb-32e011ad67aa"
+                    ]
+                },
+                "currentHeight": 255.375,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 226
+                        },
+                        "contentStart": 117,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "42d8198a-cc8b-4f32-9abf-26502da412a6",
+                    "resultId": "b0264690-aea5-422a-b5fb-32e011ad67aa",
+                    "rows": [
+                        {
+                            "0": "Jane",
+                            "1": "75000.00",
+                            "2": "IT"
+                        },
+                        {
+                            "0": "Emily",
+                            "1": "65000.00",
+                            "2": "Finance"
+                        },
+                        {
+                            "0": "Michael",
+                            "1": "80000.00",
+                            "2": "IT"
+                        },
+                        {
+                            "0": "David",
+                            "1": "70000.00",
+                            "2": "Finance"
+                        },
+                        {
+                            "0": "Laura",
+                            "1": "72000.00",
+                            "2": "IT"
+                        },
+                        {
+                            "0": "Sophia",
+                            "1": "67000.00",
+                            "2": "Finance"
+                        },
                         {
                             "0": "James",
                             "1": "81000.00",
@@ -2843,13 +2992,13 @@
                         }
                     ],
                     "executionInfo": {
-                        "text": "OK, 1 record retrieved in 1.339ms"
+                        "text": "OK, 7 records retrieved in 1.664ms"
                     },
-                    "totalRowCount": 1,
+                    "totalRowCount": 7,
                     "hasMoreRows": false,
                     "currentPage": 0,
                     "index": 0,
-                    "sql": "-- 15. How do you find the employees who work in the 'IT' department and do not have a salary greater than 80000?\nSELECT FirstName, salary, department from db.employees\nWHERE Department = 'it' and Salary > 80000",
+                    "sql": "-- 16. How do you find employees who work in the 'HR' or 'Finance' departments and have a salary greater than 65000?\nSELECT FirstName, salary, department from db.employees\nWHERE Department = ('it' or 'hr') and Salary >= 65000",
                     "updatable": false,
                     "fullTableName": "db.employees"
                 }
@@ -2857,8 +3006,8 @@
         },
         {
             "state": {
-                "start": 130,
-                "end": 130,
+                "start": 133,
+                "end": 133,
                 "language": "mysql",
                 "currentSet": 1,
                 "statements": [
