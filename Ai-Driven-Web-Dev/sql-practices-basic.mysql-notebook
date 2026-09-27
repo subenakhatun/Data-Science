@@ -2,7 +2,7 @@
     "type": "MySQLNotebook",
     "version": "1.0",
     "caption": "DB Notebook",
-    "content": "\\about\n\nCREATE DATABASE db;\nCREATE TABLE db.Employees (\n\n    EmployeeID INT PRIMARY KEY,\n    FirstName VARCHAR(50),\n    LastName VARCHAR(50),\n    Department VARCHAR(50),\n    Salary DECIMAL(10, 2)\n\n);\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary) VALUES\n\n(1, 'John', 'Doe', 'HR', 55000.00),\n(2, 'Jane', 'Smith', 'IT', 75000.00),\n(3, 'Emily', 'Jones', 'Finance', 65000.00),\n(4, 'Michael', 'Brown', 'IT', 80000.00),\n(5, 'Sarah', 'Davis', 'HR', 60000.00),\n(6, 'David', 'Wilson', 'Finance', 70000.00),\n(7, 'Laura', 'Garcia', 'IT', 72000.00),\n(8, 'Robert', 'Miller', 'HR', 58000.00),\n(9, 'Sophia', 'Martinez', 'Finance', 67000.00),\n(10, 'James', 'Anderson', 'IT', 81000.00);\nSELECT * from db.employees limit 5;\n\nCREATE TABLE db.Customers (\nCustomerID int primary key,\nCustomerName VARCHAR(50),\nCountry VARCHAR(50)\n);\nINSERT INTO db.Customers (CustomerID, CustomerName, Country)\nVALUES\n(1, 'Alice', 'USA'),\n(2, 'Bob', 'UK'),\n(3, 'Charlie', 'Canada'),\n(4, 'David', 'USA'),\n(5, 'Eve', 'Australia');\n-- Create the Orders table\nCREATE TABLE db.Orders(\nOrderID INT PRIMARY KEY,\nCustomerID INT,\nOrderDate DATE,\nProductID INT,\nFOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)\n);\nINSERT INTO db.Orders (OrderID, CustomerID, OrderDate, ProductID)\nVALUES\n(101, 1, '2024-08-01', 1001),\n(102, 1, '2024-08-03', 1002),\n(103, 2, '2024-08-04', 1001),\n(104, 3, '2024-08-05', 1003),\n(105, 5, '2024-08-06', 1004);\nCREATE TABLE db.Products (\nProductID INT PRIMARY KEY,\nProductName VARCHAR(50),\nPrice DECIMAL(10, 2)\n);\nINSERT INTO db.Products (ProductID, ProductName, Price)\nVALUES\n(1001, 'Laptop', 1000),\n(1002, 'Smartphone', 700),\n(1003, 'Tablet', 500),\n(1004, 'Headphones', 200),\n(1005, 'Smartwatch', 300);\nSELECT * from db.products limit 3;\nSELECT * from db.customers limit 4;\nSELECT * FROM db.Employees;\n\n-- 2. How do you select only the FirstName and LastName columns from the Employees table?\nSELECT firstname,lastname from db.Employees limit 2;\n\n-- 3. How do you find all employees who work in the 'IT' department?\nSELECT * from db.employees LIMIT 2;\nSELECT firstname,lastname, Department from db.employees\nwhere Department = 'it'\norder by FirstName asc;\n;\n-- 4. How do you select employees with a salary greater than 70000?\nselect * from db.employees\nwhere Salary>70000\nORDER BY Salary DESC;\n\n-- 5. How do you sort the results by the last name in ascending order?   \nselect * from db.products;\nSELECT * from db.products\nORDER BY ProductName asc;\n-- 6. How do you select distinct departments from the Employees table?   \nselect DISTINCT department from db.employees;\n-- 7. How do you count the number of employees in each department?   \nSELECT EmployeeID, FirstName, COUNT(FirstName) \nFROM db.employees \nGROUP BY EmployeeID, FirstName;\n-- 8. How do you find the maximum salary in the Employees table?   \nselect firstname, max(salary)\nfrom  db.employees\ngroup by firstname\n;\n-- 9. How do you find the average salary of employees in the 'Finance' department?   \nSELECT firstname, AVG(salary) as avgsalary\nFROM db.employees\nGROUP by firstname\nORDER BY avgsalary DESC;\n-- 9. How do you find the average salary of employees in the 'Finance' department?   \nSELECT firstname,department, AVG(salary) as avgsalary\nFROM db.employees\nWHERE department = 'finance'\nGROUP by firstname;\n-- 10. How do you select employees whose name starts with 'M'?   \nSELECT * from db.employees\nwhere FirstName like 'M%';\n-- 11. How do you select employees who work in the 'IT' department and have a salary greater than 75000?\nSELECT firstname, salary, Department FROM db.employees\nWHERE department = 'it' and salary > 75000;\n-- 12. How do you find employees who work in the 'HR' department or have a salary less than 60000?\nSELECT firstname, salary, Department FROM db.employees\nWHERE department = 'HR' and salary < 60000;\n-- 13. How do you select employees who do not work in the 'Finance' department?\nSELECT firstname,department from db.employees\nWHERE Department !='Finance'\nORDER BY  department;\n-- 14. How do you find employees whose salary is between 60000 and 70000 and who work in the 'Finance' department?\nSELECT FirstName, salary, department from db.employees\nWHERE Department = 'finance' and Salary BETWEEN 60000 and 70000;\n\n\n-- 15. How do you find the employees who work in the 'IT' department and do not have a salary greater than 80000?\nSELECT FirstName, salary, department from db.employees\nWHERE Department = 'it' and Salary <= 80000;\n-- 16. How do you find employees who work in the 'HR' or 'Finance' departments and have a salary greater than 65000?\nSELECT FirstName, salary, department from db.employees\nWHERE Department = ('it' or 'hr') and Salary >= 65000;\n-- 17. How do you select employees whose last name starts with 'D' and do not work in the 'HR' department?\nselect lastname from db.employees\nWHERE lastname like 'D%' and Department <> 'hr';\n-- 18. How do you find employees who do not work in the 'IT' department and have a salary greater than 70000?\nSELECT firstname from db.employees\nWHERE Department not in ('it') and Salary > 70000;\nSELECT* from employees;\n-- 19. How do you select employees who do not work in the 'IT' department and either have a salary greater than 75000 or have the first name 'Subena'?\nSELECT firstname, salary from db.employees\nWHERE Department not in ('it') and (salary > 7500 or firstname ='subena');\n\n-- 20. How do you find employees who do not work in the 'HR' or 'IT' department?\nSELECT firstname, department from db.employees\nwhere Department not in ('hr' , 'it');\n-- 21. Write a SQL query to find the names of customers who have placed an order.\nSELECT * FROM customers;\nselect customername, orderid  from customers\njoin orders on customers.customerid = orders.customerid;\n-- 22. Find the list of customers who have not placed any orders.\nselect * from db.employees;\n-- employees টেবিল থেকে এমন কর্মীদের নাম (firstname) ও বেতন (salary) বের করুন, যাদের বেতন কোম্পানির গড় বেতনের (Average Salary) চেয়ে বেশি।\nSELECT firstname,salary from db.employees;\nselect firstname, salary from db.employees\nwhere salary > (select AVG(salary) from db.employees)\nORDER BY salary DESC;\n\nSELECT AVG(salary) from db.employees;\n-- employees টেবিল থেকে সবচেয়ে কম বেতন পাওয়া কর্মচারীর নাম (firstname) এবং বেতন বের করুন।\nselect * from db.employees limit 2;\nselect firstname, salary from db.employees\nwhere salary = (select MIN(salary) from db.employees)\nORDER BY salary DESC;\nSELECT  min(salary) from db.employees;\n-- প্রশ্ন ৩: customers টেবিল থেকে এমন কাস্টমারদের নাম (customer_name) বের করুন, যারা কমপক্ষে একটি অর্ডার করেছে (অর্থাৎ যাদের customer_id orders টেবিলে আছে)।\nSELECT * from db.orders limit 2;\nselect * from db.customers;\nSELECT customername, customerid from db.customers\nWHERE customerid in (select customerid from db.orders);\nSELECT * from db.orders;\n-- Question 4: Retrieve the customer_name of customers who have never placed any order (i.e., their customer_id does not exist in the orders table).\nSELECT customername, customerid from db.customers\nWHERE CustomerID not in(select CustomerID from db.orders);\n-- Find the firstname and salary of employees whose salary is higher than the average salary of the 'HR' department.\nSELECT firstname,salary from db.employees\nWHERE Salary > (select  AVG(salary) from db.employees  where  department = 'hr');\nSELECT * from db.employees;\nSELECT avg(salary) from db.employees;\nSELECT * FROM db.employees LIMIT 2;\nSELECT firstname from db.employees LIMIT 3;\nSELECT firstname,department,salary,\nROW_NUMBER() OVER (partition BY department ORDER BY salary desc) as ro_no\nfrom db.employees;\n-- Write a SQL query to rank all employees across the entire company based on their salary from highest to lowest. Display firstname, department, salary, and the generated rank as salary_rank\n\nSELECT firstname,department,salary,\nRANK() OVER (ORDER BY salary desc) as ranking\nFROM db.employees;\nSELECT firstname,department,salary,\nRANK() OVER (ORDER BY salary desc) as ranking,\nDENSE_RANK() OVER (ORDER BY salary desc) as dens_ranking\nFROM db.employees;\nSELECT * FROM db.employees limit 1;\nDESCRIBE db.employees;\nSELECT COUNT(employeeid) FROM db.employees;\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary)\nVALUES \n    (11, 'Rahim', 'Uddin', 'HR', 75000),\n    (12, 'Sumona', 'Khan', 'HR', 75000),\n    (13, 'Tanvir', 'Ahmed', 'IT', 60000),\n    (14, 'Karim', 'Chowdhury', 'IT', 60000),\n    (15, 'Ayesha', 'Siddiqua', 'IT', 60000),\n    (16, 'Farhan', 'Hossain', 'Sales', 50000),\n    (17, 'Nusrat', 'Jahan', 'Sales', 45000);\nSELECT * from db.employees;\nSELECT firstname,department,salary,\nRANK() OVER (ORDER BY salary desc) as ranking,\nDENSE_RANK() OVER (ORDER BY salary desc) as dens_ranking\nFROM db.employees;\n",
+    "content": "\\about\n\nCREATE DATABASE db;\nCREATE TABLE db.Employees (\n\n    EmployeeID INT PRIMARY KEY,\n    FirstName VARCHAR(50),\n    LastName VARCHAR(50),\n    Department VARCHAR(50),\n    Salary DECIMAL(10, 2)\n\n);\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary) VALUES\n\n(1, 'John', 'Doe', 'HR', 55000.00),\n(2, 'Jane', 'Smith', 'IT', 75000.00),\n(3, 'Emily', 'Jones', 'Finance', 65000.00),\n(4, 'Michael', 'Brown', 'IT', 80000.00),\n(5, 'Sarah', 'Davis', 'HR', 60000.00),\n(6, 'David', 'Wilson', 'Finance', 70000.00),\n(7, 'Laura', 'Garcia', 'IT', 72000.00),\n(8, 'Robert', 'Miller', 'HR', 58000.00),\n(9, 'Sophia', 'Martinez', 'Finance', 67000.00),\n(10, 'James', 'Anderson', 'IT', 81000.00);\nSELECT * from db.employees limit 5;\n\nCREATE TABLE db.Customers (\nCustomerID int primary key,\nCustomerName VARCHAR(50),\nCountry VARCHAR(50)\n);\nINSERT INTO db.Customers (CustomerID, CustomerName, Country)\nVALUES\n(1, 'Alice', 'USA'),\n(2, 'Bob', 'UK'),\n(3, 'Charlie', 'Canada'),\n(4, 'David', 'USA'),\n(5, 'Eve', 'Australia');\n-- Create the Orders table\nCREATE TABLE db.Orders(\nOrderID INT PRIMARY KEY,\nCustomerID INT,\nOrderDate DATE,\nProductID INT,\nFOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)\n);\nINSERT INTO db.Orders (OrderID, CustomerID, OrderDate, ProductID)\nVALUES\n(101, 1, '2024-08-01', 1001),\n(102, 1, '2024-08-03', 1002),\n(103, 2, '2024-08-04', 1001),\n(104, 3, '2024-08-05', 1003),\n(105, 5, '2024-08-06', 1004);\nCREATE TABLE db.Products (\nProductID INT PRIMARY KEY,\nProductName VARCHAR(50),\nPrice DECIMAL(10, 2)\n);\nINSERT INTO db.Products (ProductID, ProductName, Price)\nVALUES\n(1001, 'Laptop', 1000),\n(1002, 'Smartphone', 700),\n(1003, 'Tablet', 500),\n(1004, 'Headphones', 200),\n(1005, 'Smartwatch', 300);\nSELECT * from db.products limit 3;\nSELECT * from db.customers limit 4;\nSELECT * FROM db.Employees;\n\n-- 2. How do you select only the FirstName and LastName columns from the Employees table?\nSELECT firstname,lastname from db.Employees limit 2;\n\n-- 3. How do you find all employees who work in the 'IT' department?\nSELECT * from db.employees LIMIT 2;\nSELECT firstname,lastname, Department from db.employees\nwhere Department = 'it'\norder by FirstName asc;\n;\n-- 4. How do you select employees with a salary greater than 70000?\nselect * from db.employees\nwhere Salary>70000\nORDER BY Salary DESC;\n\n-- 5. How do you sort the results by the last name in ascending order?   \nselect * from db.products;\nSELECT * from db.products\nORDER BY ProductName asc;\n-- 6. How do you select distinct departments from the Employees table?   \nselect DISTINCT department from db.employees;\n-- 7. How do you count the number of employees in each department?   \nSELECT EmployeeID, FirstName, COUNT(FirstName) \nFROM db.employees \nGROUP BY EmployeeID, FirstName;\n-- 8. How do you find the maximum salary in the Employees table?   \nselect firstname, max(salary)\nfrom  db.employees\ngroup by firstname\n;\n-- 9. How do you find the average salary of employees in the 'Finance' department?   \nSELECT firstname, AVG(salary) as avgsalary\nFROM db.employees\nGROUP by firstname\nORDER BY avgsalary DESC;\n-- 9. How do you find the average salary of employees in the 'Finance' department?   \nSELECT firstname,department, AVG(salary) as avgsalary\nFROM db.employees\nWHERE department = 'finance'\nGROUP by firstname;\n-- 10. How do you select employees whose name starts with 'M'?   \nSELECT * from db.employees\nwhere FirstName like 'M%';\n-- 11. How do you select employees who work in the 'IT' department and have a salary greater than 75000?\nSELECT firstname, salary, Department FROM db.employees\nWHERE department = 'it' and salary > 75000;\n-- 12. How do you find employees who work in the 'HR' department or have a salary less than 60000?\nSELECT firstname, salary, Department FROM db.employees\nWHERE department = 'HR' and salary < 60000;\n-- 13. How do you select employees who do not work in the 'Finance' department?\nSELECT firstname,department from db.employees\nWHERE Department !='Finance'\nORDER BY  department;\n-- 14. How do you find employees whose salary is between 60000 and 70000 and who work in the 'Finance' department?\nSELECT FirstName, salary, department from db.employees\nWHERE Department = 'finance' and Salary BETWEEN 60000 and 70000;\n\n\n-- 15. How do you find the employees who work in the 'IT' department and do not have a salary greater than 80000?\nSELECT FirstName, salary, department from db.employees\nWHERE Department = 'it' and Salary <= 80000;\n-- 16. How do you find employees who work in the 'HR' or 'Finance' departments and have a salary greater than 65000?\nSELECT FirstName, salary, department from db.employees\nWHERE Department = ('it' or 'hr') and Salary >= 65000;\n-- 17. How do you select employees whose last name starts with 'D' and do not work in the 'HR' department?\nselect lastname from db.employees\nWHERE lastname like 'D%' and Department <> 'hr';\n-- 18. How do you find employees who do not work in the 'IT' department and have a salary greater than 70000?\nSELECT firstname from db.employees\nWHERE Department not in ('it') and Salary > 70000;\nSELECT* from employees;\n-- 19. How do you select employees who do not work in the 'IT' department and either have a salary greater than 75000 or have the first name 'Subena'?\nSELECT firstname, salary from db.employees\nWHERE Department not in ('it') and (salary > 7500 or firstname ='subena');\n\n-- 20. How do you find employees who do not work in the 'HR' or 'IT' department?\nSELECT firstname, department from db.employees\nwhere Department not in ('hr' , 'it');\n-- 21. Write a SQL query to find the names of customers who have placed an order.\nSELECT * FROM customers;\nselect customername, orderid  from customers\njoin orders on customers.customerid = orders.customerid;\n-- 22. Find the list of customers who have not placed any orders.\nselect * from db.employees;\n-- employees টেবিল থেকে এমন কর্মীদের নাম (firstname) ও বেতন (salary) বের করুন, যাদের বেতন কোম্পানির গড় বেতনের (Average Salary) চেয়ে বেশি।\nSELECT firstname,salary from db.employees;\nselect firstname, salary from db.employees\nwhere salary > (select AVG(salary) from db.employees)\nORDER BY salary DESC;\n\nSELECT AVG(salary) from db.employees;\n-- employees টেবিল থেকে সবচেয়ে কম বেতন পাওয়া কর্মচারীর নাম (firstname) এবং বেতন বের করুন।\nselect * from db.employees limit 2;\nselect firstname, salary from db.employees\nwhere salary = (select MIN(salary) from db.employees)\nORDER BY salary DESC;\nSELECT  min(salary) from db.employees;\n-- প্রশ্ন ৩: customers টেবিল থেকে এমন কাস্টমারদের নাম (customer_name) বের করুন, যারা কমপক্ষে একটি অর্ডার করেছে (অর্থাৎ যাদের customer_id orders টেবিলে আছে)।\nSELECT * from db.orders limit 2;\nselect * from db.customers;\nSELECT customername, customerid from db.customers\nWHERE customerid in (select customerid from db.orders);\nSELECT * from db.orders;\n-- Question 4: Retrieve the customer_name of customers who have never placed any order (i.e., their customer_id does not exist in the orders table).\nSELECT customername, customerid from db.customers\nWHERE CustomerID not in(select CustomerID from db.orders);\n-- Find the firstname and salary of employees whose salary is higher than the average salary of the 'HR' department.\nSELECT firstname,salary from db.employees\nWHERE Salary > (select  AVG(salary) from db.employees  where  department = 'hr');\nSELECT * from db.employees;\nSELECT avg(salary) from db.employees;\nSELECT * FROM db.employees LIMIT 2;\nSELECT firstname from db.employees LIMIT 3;\nSELECT firstname,department,salary,\nROW_NUMBER() OVER (partition BY department ORDER BY salary desc) as ro_no\nfrom db.employees;\n-- Write a SQL query to rank all employees across the entire company based on their salary from highest to lowest. Display firstname, department, salary, and the generated rank as salary_rank\n\nSELECT firstname,department,salary,\nRANK() OVER (ORDER BY salary desc) as ranking\nFROM db.employees;\nSELECT firstname,department,salary,\nRANK() OVER (ORDER BY salary desc) as ranking,\nDENSE_RANK() OVER (ORDER BY salary desc) as dens_ranking\nFROM db.employees;\nSELECT * FROM db.employees limit 1;\nDESCRIBE db.employees;\nSELECT COUNT(employeeid) FROM db.employees;\nINSERT INTO db.Employees (EmployeeID, FirstName, LastName, Department, Salary)\nVALUES \n    (11, 'Rahim', 'Uddin', 'HR', 75000),\n    (12, 'Sumona', 'Khan', 'HR', 75000),\n    (13, 'Tanvir', 'Ahmed', 'IT', 60000),\n    (14, 'Karim', 'Chowdhury', 'IT', 60000),\n    (15, 'Ayesha', 'Siddiqua', 'IT', 60000),\n    (16, 'Farhan', 'Hossain', 'Sales', 50000),\n    (17, 'Nusrat', 'Jahan', 'Sales', 45000);\nSELECT * from db.employees;\nSELECT firstname,department,salary,\nRANK() OVER (ORDER BY salary desc) as ranking,\nDENSE_RANK() OVER (ORDER BY salary desc) as dens_ranking\nFROM db.employees;\nSELECT * from db.employees limit 3;\nSELECT Department,salary,\nLAG(salary,1,0) OVER(order by department ) as salary\nfrom db.employees;\nSELECT Department,salary,\nLEAD(salary) OVER(order by department ) as salary\nfrom db.employees;",
     "options": {
         "tabSize": 4,
         "indentSize": 4,
@@ -15,22 +15,22 @@
             {
                 "inSelectionMode": false,
                 "selectionStart": {
-                    "lineNumber": 211,
-                    "column": 1
+                    "lineNumber": 217,
+                    "column": 19
                 },
                 "position": {
-                    "lineNumber": 211,
-                    "column": 1
+                    "lineNumber": 217,
+                    "column": 19
                 }
             }
         ],
         "viewState": {
             "scrollLeft": 0,
             "firstPosition": {
-                "lineNumber": 207,
+                "lineNumber": 212,
                 "column": 1
             },
-            "firstPositionDeltaTop": 35
+            "firstPositionDeltaTop": 27
         },
         "contributionsState": {
             "editor.contrib.folding": {},
@@ -434,7 +434,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "8a374417-a253-4719-b58b-eb61336d0f09"
+                        "c83259ce-00c2-4c05-8dfe-be0371bd4d64"
                     ]
                 },
                 "currentHeight": 36,
@@ -462,8 +462,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "8a374417-a253-4719-b58b-eb61336d0f09",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "c83259ce-00c2-4c05-8dfe-be0371bd4d64",
                     "rows": [
                         {
                             "0": 1,
@@ -691,7 +691,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "67a33ab3-fb62-418c-9584-bd4b720014c6"
+                        "07ba1bc4-bb7c-4dd6-b0db-ef755476ac9d"
                     ]
                 },
                 "currentHeight": 36,
@@ -710,8 +710,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "67a33ab3-fb62-418c-9584-bd4b720014c6",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "07ba1bc4-bb7c-4dd6-b0db-ef755476ac9d",
                     "rows": [
                         {
                             "0": "John",
@@ -781,7 +781,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "612e4ad2-75ec-4905-9d64-3c1482a037b1"
+                        "8d449ca2-ba87-4daf-d530-479cb5cfe07b"
                     ]
                 },
                 "currentHeight": 36,
@@ -800,8 +800,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "612e4ad2-75ec-4905-9d64-3c1482a037b1",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "8d449ca2-ba87-4daf-d530-479cb5cfe07b",
                     "rows": [
                         {
                             "0": 1,
@@ -941,7 +941,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "cfaa7dc3-3c67-4642-bd32-26c1e24cb562"
+                        "5eedb7e4-ec12-4514-bfb2-c708688b012e"
                     ]
                 },
                 "currentHeight": 36,
@@ -969,8 +969,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "cfaa7dc3-3c67-4642-bd32-26c1e24cb562",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "5eedb7e4-ec12-4514-bfb2-c708688b012e",
                     "rows": [
                         {
                             "0": "James",
@@ -1070,7 +1070,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "d14c6c42-0b5a-4db8-9ea2-217ccbc0ee3a"
+                        "06b55465-3409-4984-efb3-5734271ace1e"
                     ]
                 },
                 "currentHeight": 36,
@@ -1098,8 +1098,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "d14c6c42-0b5a-4db8-9ea2-217ccbc0ee3a",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "06b55465-3409-4984-efb3-5734271ace1e",
                     "rows": [
                         {
                             "0": 10,
@@ -1253,7 +1253,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "d4d69636-6c70-41f4-b2e1-b897e89494c1"
+                        "339d9ba9-1072-4588-bbd7-e036c678e901"
                     ]
                 },
                 "currentHeight": 36,
@@ -1272,8 +1272,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "d4d69636-6c70-41f4-b2e1-b897e89494c1",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "339d9ba9-1072-4588-bbd7-e036c678e901",
                     "rows": [
                         {
                             "0": 1001,
@@ -1386,7 +1386,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "e7646004-cdfd-4cdc-f252-de8a1f679384"
+                        "86edc779-c927-4017-e9d8-77fad1a2bae1"
                     ]
                 },
                 "currentHeight": 36,
@@ -1405,8 +1405,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "e7646004-cdfd-4cdc-f252-de8a1f679384",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "86edc779-c927-4017-e9d8-77fad1a2bae1",
                     "rows": [
                         {
                             "0": 1004,
@@ -1519,7 +1519,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "443c9371-f369-4316-dcbc-b7f84ce48603"
+                        "e0426bee-53f6-4552-bc80-0dd5c663a46d"
                     ]
                 },
                 "currentHeight": 36,
@@ -1547,8 +1547,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "443c9371-f369-4316-dcbc-b7f84ce48603",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "e0426bee-53f6-4552-bc80-0dd5c663a46d",
                     "rows": [
                         {
                             "0": "HR"
@@ -1601,7 +1601,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "5ef24068-f098-400d-e0c3-5c3731f751d4"
+                        "400e05a9-4f64-4573-f0a8-ef394c28decd"
                     ]
                 },
                 "currentHeight": 36,
@@ -1620,8 +1620,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "5ef24068-f098-400d-e0c3-5c3731f751d4",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "400e05a9-4f64-4573-f0a8-ef394c28decd",
                     "rows": [
                         {
                             "0": 1,
@@ -1755,7 +1755,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "153de9eb-76f5-40cf-b274-ac522c768c98"
+                        "42650dd7-bdd4-4b84-ac86-0122327feb4e"
                     ]
                 },
                 "currentHeight": 36,
@@ -1774,8 +1774,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "153de9eb-76f5-40cf-b274-ac522c768c98",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "42650dd7-bdd4-4b84-ac86-0122327feb4e",
                     "rows": [
                         {
                             "0": "John",
@@ -1881,7 +1881,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "76bda5d1-cd77-410e-c1c2-9225824916b7"
+                        "975c28b0-7543-4020-c467-bca5ddde89b9"
                     ]
                 },
                 "currentHeight": 36,
@@ -1900,8 +1900,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "76bda5d1-cd77-410e-c1c2-9225824916b7",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "975c28b0-7543-4020-c467-bca5ddde89b9",
                     "rows": [
                         {
                             "0": "James",
@@ -2007,7 +2007,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "ca948ba5-b89b-42cd-e8bc-6417faad5e22"
+                        "57884e74-0386-46c9-c6f3-d8091f8a956c"
                     ]
                 },
                 "currentHeight": 36,
@@ -2026,8 +2026,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "ca948ba5-b89b-42cd-e8bc-6417faad5e22",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "57884e74-0386-46c9-c6f3-d8091f8a956c",
                     "rows": [
                         {
                             "0": "Emily",
@@ -2126,7 +2126,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "b5a275c3-6183-48a4-b670-1a4051ff2f9f"
+                        "2faeaa5a-ad09-46dd-d709-0db08550cd42"
                     ]
                 },
                 "currentHeight": 36,
@@ -2145,8 +2145,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "b5a275c3-6183-48a4-b670-1a4051ff2f9f",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "2faeaa5a-ad09-46dd-d709-0db08550cd42",
                     "rows": [
                         {
                             "0": 4,
@@ -2279,7 +2279,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "feea3845-54f8-4491-d3d3-06efbd83c3f4"
+                        "fe57e9ce-8612-4374-a47f-8260fb39e93e"
                     ]
                 },
                 "currentHeight": 122.21875,
@@ -2307,8 +2307,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "feea3845-54f8-4491-d3d3-06efbd83c3f4",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "fe57e9ce-8612-4374-a47f-8260fb39e93e",
                     "rows": [
                         {
                             "0": "Michael",
@@ -2402,7 +2402,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "1f3e1ade-a210-4971-809a-f64b9aef5a7e"
+                        "49ef0e57-f447-440c-ae4d-d6b6a7b19fd3"
                     ]
                 },
                 "currentHeight": 36,
@@ -2421,8 +2421,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "1f3e1ade-a210-4971-809a-f64b9aef5a7e",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "49ef0e57-f447-440c-ae4d-d6b6a7b19fd3",
                     "rows": [
                         {
                             "0": "John",
@@ -2516,7 +2516,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "d23ac9e6-fde2-4ba3-d4e8-85f6c110760f"
+                        "98e71226-111d-480b-f361-eed77933e5f4"
                     ]
                 },
                 "currentHeight": 36,
@@ -2535,8 +2535,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "d23ac9e6-fde2-4ba3-d4e8-85f6c110760f",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "98e71226-111d-480b-f361-eed77933e5f4",
                     "rows": [
                         {
                             "0": "John",
@@ -2626,7 +2626,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "16e23abb-3345-4eec-d9a8-97027a35c8cf"
+                        "f4baacb5-450e-4f5e-9753-edcaa81b8a31"
                     ]
                 },
                 "currentHeight": 36,
@@ -2654,8 +2654,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "16e23abb-3345-4eec-d9a8-97027a35c8cf",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "f4baacb5-450e-4f5e-9753-edcaa81b8a31",
                     "rows": [
                         {
                             "0": "Emily",
@@ -2754,7 +2754,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "71fa14f8-8310-4e0a-ff40-65dab2d76e1e"
+                        "a3e31316-2569-4131-c50e-cffbe74e5e78"
                     ]
                 },
                 "currentHeight": 36,
@@ -2773,8 +2773,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "71fa14f8-8310-4e0a-ff40-65dab2d76e1e",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "a3e31316-2569-4131-c50e-cffbe74e5e78",
                     "rows": [
                         {
                             "0": "Jane",
@@ -2873,7 +2873,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "349fe2a5-a01f-4001-862c-612692c4e6f2"
+                        "8af3bbbb-10be-4bd6-8a94-a91ca6053a4b"
                     ]
                 },
                 "currentHeight": 36,
@@ -2892,8 +2892,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "349fe2a5-a01f-4001-862c-612692c4e6f2",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "8af3bbbb-10be-4bd6-8a94-a91ca6053a4b",
                     "rows": [
                         {
                             "0": "Jane",
@@ -3009,10 +3009,6 @@
                 "start": 133,
                 "end": 135,
                 "language": "mysql",
-                "result": {
-                    "type": "resultIds",
-                    "list": []
-                },
                 "currentSet": 1,
                 "statements": [
                     {
@@ -3033,10 +3029,6 @@
                 "start": 136,
                 "end": 138,
                 "language": "mysql",
-                "result": {
-                    "type": "resultIds",
-                    "list": []
-                },
                 "currentSet": 1,
                 "statements": [
                     {
@@ -3060,7 +3052,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "51a50bbb-ff87-4022-a7db-e1ed6f0851c0"
+                        "6099b99c-cc90-444c-8ebb-442c77711b14"
                     ]
                 },
                 "currentHeight": 36,
@@ -3079,8 +3071,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "51a50bbb-ff87-4022-a7db-e1ed6f0851c0",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "6099b99c-cc90-444c-8ebb-442c77711b14",
                     "rows": [
                         {
                             "0": 1,
@@ -3276,7 +3268,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "882eef73-2bad-4829-d200-2db318e912d4"
+                        "1ea2fe42-aec4-410b-80da-0ed61a05c243"
                     ]
                 },
                 "currentHeight": 36,
@@ -3304,8 +3296,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "882eef73-2bad-4829-d200-2db318e912d4",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "1ea2fe42-aec4-410b-80da-0ed61a05c243",
                     "rows": [
                         {
                             "0": "John",
@@ -3395,7 +3387,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "a2fedab0-d2bd-44d6-e1bc-c86de6a42238"
+                        "bec8c509-19f1-40a8-bee6-966464d0e847"
                     ]
                 },
                 "currentHeight": 148.859375,
@@ -3414,8 +3406,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "a2fedab0-d2bd-44d6-e1bc-c86de6a42238",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "bec8c509-19f1-40a8-bee6-966464d0e847",
                     "rows": [
                         {
                             "0": "Emily",
@@ -3489,7 +3481,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "f9dabb93-976f-444b-814d-50fccce7f939"
+                        "3f8b82a3-ce45-44d1-a70b-9003b4e8047d"
                     ]
                 },
                 "currentHeight": 36,
@@ -3508,8 +3500,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "f9dabb93-976f-444b-814d-50fccce7f939",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "3f8b82a3-ce45-44d1-a70b-9003b4e8047d",
                     "rows": [
                         {
                             "0": 1,
@@ -3618,7 +3610,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "40465808-092b-4f23-eb89-b3fcd26117f9"
+                        "d59ad664-4a1a-41eb-b034-e60f7580760d"
                     ]
                 },
                 "currentHeight": 36,
@@ -3637,8 +3629,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "40465808-092b-4f23-eb89-b3fcd26117f9",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "d59ad664-4a1a-41eb-b034-e60f7580760d",
                     "rows": [
                         {
                             "0": "Alice",
@@ -3722,7 +3714,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "6e622bd2-b0e8-4661-c2bd-93e2f99b605a"
+                        "4fa61035-3da9-462c-d3d5-569c2eb7193a"
                     ]
                 },
                 "currentHeight": 36,
@@ -3741,8 +3733,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "6e622bd2-b0e8-4661-c2bd-93e2f99b605a",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "4fa61035-3da9-462c-d3d5-569c2eb7193a",
                     "rows": [
                         {
                             "0": 1,
@@ -3938,7 +3930,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "5446d684-c6a3-42eb-db80-7a9accc5d695"
+                        "438fc9fb-3b37-4b2a-bda9-7ea8dc823c8a"
                     ]
                 },
                 "currentHeight": 36,
@@ -3957,8 +3949,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "5446d684-c6a3-42eb-db80-7a9accc5d695",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "438fc9fb-3b37-4b2a-bda9-7ea8dc823c8a",
                     "rows": [
                         {
                             "0": "John",
@@ -4064,7 +4056,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "99f569fc-98e7-4e62-f3bd-11c5a869f418"
+                        "52516df1-1a65-4f69-9a54-17e9b8d77628"
                     ]
                 },
                 "currentHeight": 36,
@@ -4092,8 +4084,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "99f569fc-98e7-4e62-f3bd-11c5a869f418",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "52516df1-1a65-4f69-9a54-17e9b8d77628",
                     "rows": [
                         {
                             "0": "James",
@@ -4179,7 +4171,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "e002df94-77f4-4980-f854-ecb940d99bb2"
+                        "9fc680c8-0f69-480e-b91a-061469ec2cec"
                     ]
                 },
                 "currentHeight": 36,
@@ -4198,8 +4190,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "e002df94-77f4-4980-f854-ecb940d99bb2",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "9fc680c8-0f69-480e-b91a-061469ec2cec",
                     "rows": [
                         {
                             "0": "68300.000000"
@@ -4250,7 +4242,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "84a76f51-8fa9-402e-b77a-96d1764d0f63"
+                        "6d3167e3-ee7e-4f05-9c96-e398de077f66"
                     ]
                 },
                 "currentHeight": 36,
@@ -4269,8 +4261,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "84a76f51-8fa9-402e-b77a-96d1764d0f63",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "6d3167e3-ee7e-4f05-9c96-e398de077f66",
                     "rows": [
                         {
                             "0": 1,
@@ -4410,7 +4402,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "68ea16ef-fcbf-4f8d-8d5e-2cda8731b8eb"
+                        "b643f6ed-39ac-4606-ec98-a16381af3cb9"
                     ]
                 },
                 "currentHeight": 36,
@@ -4429,8 +4421,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "68ea16ef-fcbf-4f8d-8d5e-2cda8731b8eb",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "b643f6ed-39ac-4606-ec98-a16381af3cb9",
                     "rows": [
                         {
                             "0": "John",
@@ -4500,7 +4492,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "719a4b66-372f-4d6e-8ddc-67da066390ff"
+                        "9558396f-037b-4f1d-e5c0-d2610edc1b61"
                     ]
                 },
                 "currentHeight": 36,
@@ -4519,8 +4511,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "719a4b66-372f-4d6e-8ddc-67da066390ff",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "9558396f-037b-4f1d-e5c0-d2610edc1b61",
                     "rows": [
                         {
                             "0": "55000.00"
@@ -4571,7 +4563,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "b46af06b-3b8b-4210-9474-2dd63019a50a"
+                        "42910cef-cfe9-4e4d-d061-0b0c2bb0c25e"
                     ]
                 },
                 "currentHeight": 36,
@@ -4590,8 +4582,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "b46af06b-3b8b-4210-9474-2dd63019a50a",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "42910cef-cfe9-4e4d-d061-0b0c2bb0c25e",
                     "rows": [
                         {
                             "0": 101,
@@ -4703,7 +4695,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "465a024b-e1ab-40dd-b7b8-ee37ac0a9841"
+                        "53e25433-504e-4fe5-8039-2354a51d9471"
                     ]
                 },
                 "currentHeight": 36,
@@ -4722,8 +4714,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "465a024b-e1ab-40dd-b7b8-ee37ac0a9841",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "53e25433-504e-4fe5-8039-2354a51d9471",
                     "rows": [
                         {
                             "0": 1,
@@ -4832,7 +4824,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "8ec58d1f-d7b6-4317-903b-bbad84322373"
+                        "071e01ff-7c21-4dfe-f8ec-910ac59fec15"
                     ]
                 },
                 "currentHeight": 36,
@@ -4851,8 +4843,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "8ec58d1f-d7b6-4317-903b-bbad84322373",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "071e01ff-7c21-4dfe-f8ec-910ac59fec15",
                     "rows": [
                         {
                             "0": "Alice",
@@ -4932,7 +4924,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "4cf2be38-0eb9-4e78-8cb4-d147528d9fe5"
+                        "e9cf028f-155a-4bee-ce39-d7dd48a1f7db"
                     ]
                 },
                 "currentHeight": 36,
@@ -4951,8 +4943,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "4cf2be38-0eb9-4e78-8cb4-d147528d9fe5",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "e9cf028f-155a-4bee-ce39-d7dd48a1f7db",
                     "rows": [
                         {
                             "0": 101,
@@ -5082,7 +5074,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "109095eb-9bcf-4bdf-dae2-08d343e42169"
+                        "6030dfa4-909b-4f89-cc9c-58f4b9223b5e"
                     ]
                 },
                 "currentHeight": 36,
@@ -5101,8 +5093,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "109095eb-9bcf-4bdf-dae2-08d343e42169",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "6030dfa4-909b-4f89-cc9c-58f4b9223b5e",
                     "rows": [
                         {
                             "0": "David",
@@ -5170,7 +5162,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "c8927f42-7e7a-4cf1-c81c-ddb87153e4e0"
+                        "ec38be66-0d65-438a-8002-59fdfb069550"
                     ]
                 },
                 "currentHeight": 308.640625,
@@ -5189,8 +5181,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "c8927f42-7e7a-4cf1-c81c-ddb87153e4e0",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "ec38be66-0d65-438a-8002-59fdfb069550",
                     "rows": [
                         {
                             "0": "Jane",
@@ -5292,7 +5284,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "19af8bb5-a058-4b51-e338-6a94ef02b1d7"
+                        "159b7a20-ddb1-4f6b-cf87-b194cefde1b1"
                     ]
                 },
                 "currentHeight": 335.28125,
@@ -5311,8 +5303,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "19af8bb5-a058-4b51-e338-6a94ef02b1d7",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "159b7a20-ddb1-4f6b-cf87-b194cefde1b1",
                     "rows": [
                         {
                             "0": 1,
@@ -5508,7 +5500,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "e9e19cb9-3294-40b7-9eb7-dfe113de4d27"
+                        "ac0d53c9-2d11-4dd1-82f8-0f2a72cdf8c0"
                     ]
                 },
                 "currentHeight": 95.59375,
@@ -5527,8 +5519,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "e9e19cb9-3294-40b7-9eb7-dfe113de4d27",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "ac0d53c9-2d11-4dd1-82f8-0f2a72cdf8c0",
                     "rows": [
                         {
                             "0": "68300.000000"
@@ -5579,7 +5571,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "bf8ca4d0-0456-45c4-f60a-b9e191c9176d"
+                        "61f25732-d3a0-4590-a9f1-37d83b227c54"
                     ]
                 },
                 "currentHeight": 36,
@@ -5598,8 +5590,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "bf8ca4d0-0456-45c4-f60a-b9e191c9176d",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "61f25732-d3a0-4590-a9f1-37d83b227c54",
                     "rows": [
                         {
                             "0": 1,
@@ -5739,7 +5731,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "3bed4c05-951d-4802-f4a4-f3a6d1b3f2a1"
+                        "9f3e33c9-34df-469a-8f1c-29800cae738e"
                     ]
                 },
                 "currentHeight": 36,
@@ -5758,8 +5750,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "3bed4c05-951d-4802-f4a4-f3a6d1b3f2a1",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "9f3e33c9-34df-469a-8f1c-29800cae738e",
                     "rows": [
                         {
                             "0": "John"
@@ -5812,7 +5804,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "76b877dd-96c4-4e14-eb1c-9a1ecee29743"
+                        "4b53b001-2e3a-4ecd-f569-a01385ce1daa"
                     ]
                 },
                 "currentHeight": 36,
@@ -5831,8 +5823,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "76b877dd-96c4-4e14-eb1c-9a1ecee29743",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "4b53b001-2e3a-4ecd-f569-a01385ce1daa",
                     "rows": [
                         {
                             "0": "David",
@@ -6028,7 +6020,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "d5f4a58f-425f-439a-da18-4fc6301ca437"
+                        "316bbd46-0fde-4892-8f0a-0186ceb9d51c"
                     ]
                 },
                 "currentHeight": 36,
@@ -6047,8 +6039,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "d5f4a58f-425f-439a-da18-4fc6301ca437",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "316bbd46-0fde-4892-8f0a-0186ceb9d51c",
                     "rows": [
                         {
                             "0": "James",
@@ -6212,7 +6204,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "55951a33-72a9-4288-e0f8-0f02bbb1cc32"
+                        "872abebf-7e7c-454d-85d2-a790fbccfbfa"
                     ]
                 },
                 "currentHeight": 36,
@@ -6231,8 +6223,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "55951a33-72a9-4288-e0f8-0f02bbb1cc32",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "872abebf-7e7c-454d-85d2-a790fbccfbfa",
                     "rows": [
                         {
                             "0": "James",
@@ -6426,7 +6418,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "b7e368f5-b14c-4e60-8a63-12bf56fe7100"
+                        "3b39ef20-7555-42dd-e7ed-82e12b7e775e"
                     ]
                 },
                 "currentHeight": 36,
@@ -6445,8 +6437,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "b7e368f5-b14c-4e60-8a63-12bf56fe7100",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "3b39ef20-7555-42dd-e7ed-82e12b7e775e",
                     "rows": [
                         {
                             "0": 1,
@@ -6579,7 +6571,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "a1c58690-cdba-4efa-821e-ab94551f8f3e"
+                        "4dfcb5c1-138b-4cb0-d3d4-42bdbaf1b471"
                     ]
                 },
                 "currentHeight": 36,
@@ -6598,8 +6590,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "a1c58690-cdba-4efa-821e-ab94551f8f3e",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "4dfcb5c1-138b-4cb0-d3d4-42bdbaf1b471",
                     "rows": [
                         {
                             "0": "EmployeeID",
@@ -6765,7 +6757,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "747a1e73-7213-47e8-daa9-882076b9b9ce"
+                        "ba9c07de-4ba2-4cbb-dd70-088a3fffc00b"
                     ]
                 },
                 "currentHeight": 36,
@@ -6784,8 +6776,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "747a1e73-7213-47e8-daa9-882076b9b9ce",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "ba9c07de-4ba2-4cbb-dd70-088a3fffc00b",
                     "rows": [
                         {
                             "0": 10
@@ -6866,7 +6858,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "916d197e-87ac-4c4e-c233-aec4084feb5e"
+                        "9d14c16e-89d5-4c05-f4d6-0ec7ae12b978"
                     ]
                 },
                 "currentHeight": 351.984375,
@@ -6885,8 +6877,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "916d197e-87ac-4c4e-c233-aec4084feb5e",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "9d14c16e-89d5-4c05-f4d6-0ec7ae12b978",
                     "rows": [
                         {
                             "0": 1,
@@ -7131,7 +7123,7 @@
                 "result": {
                     "type": "resultIds",
                     "list": [
-                        "c5fd03f2-a81e-4602-d58e-0a4c6a8b3539"
+                        "fb0d7e90-a4a8-47e1-83df-cad7ef45ebba"
                     ]
                 },
                 "currentHeight": 351.984375,
@@ -7150,8 +7142,8 @@
             },
             "data": [
                 {
-                    "tabId": "d4657064-a55a-4387-996f-a5f17c196fe3",
-                    "resultId": "c5fd03f2-a81e-4602-d58e-0a4c6a8b3539",
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "fb0d7e90-a4a8-47e1-83df-cad7ef45ebba",
                     "rows": [
                         {
                             "0": "James",
@@ -7391,13 +7383,373 @@
                 "start": 211,
                 "end": 211,
                 "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "9d063e15-0967-4819-a4c8-3555cbc5f11a"
+                    ]
+                },
+                "currentHeight": 148.859375,
                 "currentSet": 1,
                 "statements": [
                     {
                         "delimiter": ";",
                         "span": {
                             "start": 0,
-                            "length": 0
+                            "length": 35
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "9d063e15-0967-4819-a4c8-3555cbc5f11a",
+                    "rows": [
+                        {
+                            "0": 1,
+                            "1": "John",
+                            "2": "Doe",
+                            "3": "HR",
+                            "4": "55000.00"
+                        },
+                        {
+                            "0": 2,
+                            "1": "Jane",
+                            "2": "Smith",
+                            "3": "IT",
+                            "4": "75000.00"
+                        },
+                        {
+                            "0": 3,
+                            "1": "Emily",
+                            "2": "Jones",
+                            "3": "Finance",
+                            "4": "65000.00"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "EmployeeID",
+                            "field": "0",
+                            "dataType": {
+                                "type": 4,
+                                "flags": [
+                                    "SIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 10,
+                                "parameterFormatType": "OneOrZero",
+                                "synonyms": [
+                                    "INTEGER",
+                                    "INT4"
+                                ]
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "FirstName",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        },
+                        {
+                            "title": "LastName",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        },
+                        {
+                            "title": "Department",
+                            "field": "3",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        },
+                        {
+                            "title": "Salary",
+                            "field": "4",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 3 records retrieved in 3.93ms"
+                    },
+                    "totalRowCount": 3,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT * from db.employees limit 3",
+                    "updatable": true,
+                    "fullTableName": "db.employees"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 212,
+                "end": 214,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "682ccb94-78ba-45ef-9cd2-e55ad36be2ee"
+                    ]
+                },
+                "currentHeight": 351.984375,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 97
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "52dc48c0-9a47-443f-9743-ab316e1f7dd2",
+                    "resultId": "682ccb94-78ba-45ef-9cd2-e55ad36be2ee",
+                    "rows": [
+                        {
+                            "0": "Finance",
+                            "1": "65000.00",
+                            "2": "0.00"
+                        },
+                        {
+                            "0": "Finance",
+                            "1": "70000.00",
+                            "2": "65000.00"
+                        },
+                        {
+                            "0": "Finance",
+                            "1": "67000.00",
+                            "2": "70000.00"
+                        },
+                        {
+                            "0": "HR",
+                            "1": "55000.00",
+                            "2": "67000.00"
+                        },
+                        {
+                            "0": "HR",
+                            "1": "60000.00",
+                            "2": "55000.00"
+                        },
+                        {
+                            "0": "HR",
+                            "1": "58000.00",
+                            "2": "60000.00"
+                        },
+                        {
+                            "0": "HR",
+                            "1": "75000.00",
+                            "2": "58000.00"
+                        },
+                        {
+                            "0": "HR",
+                            "1": "75000.00",
+                            "2": "75000.00"
+                        },
+                        {
+                            "0": "IT",
+                            "1": "75000.00",
+                            "2": "75000.00"
+                        },
+                        {
+                            "0": "IT",
+                            "1": "80000.00",
+                            "2": "75000.00"
+                        },
+                        {
+                            "0": "IT",
+                            "1": "72000.00",
+                            "2": "80000.00"
+                        },
+                        {
+                            "0": "IT",
+                            "1": "81000.00",
+                            "2": "72000.00"
+                        },
+                        {
+                            "0": "IT",
+                            "1": "60000.00",
+                            "2": "81000.00"
+                        },
+                        {
+                            "0": "IT",
+                            "1": "60000.00",
+                            "2": "60000.00"
+                        },
+                        {
+                            "0": "IT",
+                            "1": "60000.00",
+                            "2": "60000.00"
+                        },
+                        {
+                            "0": "Sales",
+                            "1": "50000.00",
+                            "2": "60000.00"
+                        },
+                        {
+                            "0": "Sales",
+                            "1": "45000.00",
+                            "2": "50000.00"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Department",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "salary",
+                            "field": "1",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "salary",
+                            "field": "2",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 17 records retrieved in 3.58ms"
+                    },
+                    "totalRowCount": 17,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT Department,salary,\nLAG(salary,1,0) OVER(order by department ) as salary\nfrom db.employees",
+                    "updatable": false,
+                    "fullTableName": ""
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 215,
+                "end": 217,
+                "language": "mysql",
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 94
                         },
                         "contentStart": 0,
                         "state": 0
