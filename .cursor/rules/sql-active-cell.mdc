@@ -1,0 +1,43 @@
+---
+description: >
+  Currently active SQL notebook cell. Use this to scope edits to the correct
+  cell block. Do NOT modify other cells unless explicitly asked.
+globs:
+  - "**/*.sql"
+  - "**/*.sqlnb"
+alwaysApply: false
+---
+
+# Active Cell Context
+
+**File:** `d:\Github-alll-repo\Data-Science\MYSQL\practices1.sql`  
+**Cell:** 2 of 2  
+**Connection:** None  
+
+
+## Current Cell SQL (Cell 2)
+
+```sql
+-- empty cell
+```
+
+## Available Variables
+
+_None defined_
+
+## Surrounding Cells
+
+**Previous cell (1):**
+```sql
+-- write your query here
+use db;
+```
+
+_No next cell_
+
+## Editing Rules
+
+- Only edit **Cell 2** unless explicitly asked to change another cell
+- Preserve `-- %%` cell boundary markers when editing
+- Preserve `-- @var` and `-- @connection` directives
+- Use `{{variableName}}` syntax to reference defined variables
