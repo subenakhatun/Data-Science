@@ -2,7 +2,7 @@
     "type": "MySQLNotebook",
     "version": "1.0",
     "caption": "DB Notebook",
-    "content": "\\about\n",
+    "content": "\\about\nUSE ec;\n-- CREATE TABLE\nCREATE TABLE customers (\n    customer_id INT PRIMARY KEY,\n    name VARCHAR(100),\n    signup_date DATE,\n    country VARCHAR(50)\n);\n\nCREATE TABLE products (\n    product_id INT PRIMARY KEY,\n    product_name VARCHAR(100),\n    category VARCHAR(50),\n    cost DECIMAL(10,2)\n);\n\nCREATE TABLE orders (\n    order_id INT PRIMARY KEY,\n    customer_id INT,\n    order_date DATE,\n    status VARCHAR(20)\n);\n\nCREATE TABLE order_items (\n    order_id INT,\n    product_id INT,\n    quantity INT,\n    unit_price DECIMAL(10,2)\n);\n\nCREATE TABLE payments (\n    payment_id INT PRIMARY KEY,\n    order_id INT,\n    payment_date DATE,\n    amount DECIMAL(10,2),\n    status VARCHAR(20)\n);\n\nCREATE TABLE website_visits (\n    visit_id INT PRIMARY KEY,\n    customer_id INT,\n    visit_date DATE,\n    source VARCHAR(50),\n    device VARCHAR(30)\n);\n\nCREATE TABLE subscriptions (\n    customer_id INT,\n    start_date DATE,\n    end_date DATE,\n    plan VARCHAR(30),\n    monthly_fee DECIMAL(10,2)\n);\nSHOW TABLES;\n-- Q1. Customer-wise total revenue বের করো। শুধু Completed order হিসাব করবে।\nSELECT * from website_visits limit 1;\n-- INSERT table VALUES\nINSERT INTO ec.subscriptions\n(customer_id, start_date, end_date, plan, monthly_fee)\nVALUES\n(1, '2025-03-01', NULL, 'Premium', 1200),\n(2, '2025-03-05', '2025-09-05', 'Basic', 500),\n(3, '2025-03-15', NULL, 'Premium', 1200),\n(4, '2025-03-20', '2025-06-20', 'Basic', 500),\n(5, '2025-04-01', NULL, 'Standard', 800),\n(6, '2025-04-10', '2025-11-10', 'Basic', 500),\n(7, '2025-04-15', NULL, 'Premium', 1200),\n(8, '2025-04-20', NULL, 'Standard', 800),\n(9, '2025-04-25', '2025-08-25', 'Basic', 500),\n(10, '2025-05-01', NULL, 'Premium', 1200),\n\n(11, '2025-05-10', NULL, 'Standard', 800),\n(12, '2025-05-15', '2025-10-15', 'Basic', 500),\n(13, '2025-05-20', NULL, 'Premium', 1200),\n(14, '2025-06-01', NULL, 'Standard', 800),\n(15, '2025-06-05', '2026-01-05', 'Basic', 500),\n(16, '2025-06-10', NULL, 'Premium', 1200),\n(17, '2025-06-15', NULL, 'Standard', 800),\n(18, '2025-07-01', '2025-12-01', 'Basic', 500),\n(19, '2025-07-05', NULL, 'Premium', 1200),\n(20, '2025-07-10', NULL, 'Standard', 800),\n\n(21, '2025-07-15', NULL, 'Premium', 1200),\n(22, '2025-07-20', '2025-11-20', 'Basic', 500),\n(23, '2025-08-01', NULL, 'Standard', 800),\n(24, '2025-08-05', NULL, 'Premium', 1200),\n(25, '2025-08-10', '2026-02-10', 'Basic', 500),\n(26, '2025-08-15', NULL, 'Standard', 800),\n(27, '2025-08-20', NULL, 'Premium', 1200),\n(28, '2025-09-01', '2026-01-01', 'Basic', 500),\n(29, '2025-09-05', NULL, 'Standard', 800),\n(30, '2025-09-10', NULL, 'Premium', 1200),\n\n(31, '2025-09-15', NULL, 'Standard', 800),\n(32, '2025-10-01', '2026-02-01', 'Basic', 500),\n(33, '2025-10-05', NULL, 'Premium', 1200),\n(34, '2025-10-10', NULL, 'Standard', 800),\n(35, '2025-10-15', '2026-03-15', 'Basic', 500),\n(36, '2025-10-20', NULL, 'Premium', 1200),\n(37, '2025-11-01', NULL, 'Standard', 800),\n(38, '2025-11-05', '2026-03-05', 'Basic', 500),\n(39, '2025-11-10', NULL, 'Premium', 1200),\n(40, '2025-11-15', NULL, 'Standard', 800),\n\n(41, '2025-12-01', NULL, 'Premium', 1200),\n(42, '2025-12-05', '2026-03-05', 'Basic', 500),\n(43, '2025-12-10', NULL, 'Standard', 800),\n(44, '2025-12-15', NULL, 'Premium', 1200),\n(45, '2026-01-01', NULL, 'Basic', 500),\n(46, '2026-01-05', NULL, 'Standard', 800),\n(47, '2026-01-10', '2026-03-10', 'Basic', 500),\n(48, '2026-02-01', NULL, 'Premium', 1200),\n(49, '2026-02-05', NULL, 'Standard', 800),\n(50, '2026-02-10', NULL, 'Premium', 1200);\nINSERT INTO ec.website_visits\n(visit_id, customer_id, visit_date, source, device)\nVALUES\n(1,1,'2025-02-28','Google','Mobile'),\n(2,1,'2025-03-03','Facebook','Mobile'),\n(3,1,'2025-03-04','Google','Desktop'),\n\n(4,2,'2025-03-01','Facebook','Mobile'),\n(5,2,'2025-03-07','Google','Desktop'),\n(6,2,'2025-05-06','Email','Mobile'),\n\n(7,3,'2025-03-10','Google','Mobile'),\n(8,3,'2025-03-14','Google','Mobile'),\n\n(9,4,'2025-02-25','Facebook','Desktop'),\n(10,4,'2025-03-24','Facebook','Mobile'),\n\n(11,5,'2025-03-30','Instagram','Mobile'),\n(12,5,'2025-04-01','Instagram','Mobile'),\n\n(13,6,'2025-04-01','Google','Mobile'),\n(14,6,'2025-04-06','Email','Mobile'),\n\n(15,7,'2025-04-10','Facebook','Desktop'),\n\n(16,8,'2025-04-15','Google','Mobile'),\n(17,8,'2025-04-19','Google','Mobile'),\n\n(18,9,'2025-04-20','Instagram','Mobile'),\n\n(19,10,'2025-04-28','Facebook','Mobile'),\n(20,10,'2025-05-02','Email','Desktop'),\n(21,10,'2026-03-01','Google','Mobile'),\n\n(22,11,'2025-05-05','Google','Desktop'),\n(23,12,'2025-05-10','Facebook','Mobile'),\n(24,13,'2025-05-20','Instagram','Mobile'),\n(25,13,'2025-05-24','Google','Mobile'),\n\n(26,14,'2025-05-28','Google','Desktop'),\n(27,15,'2025-06-05','Facebook','Mobile'),\n(28,16,'2025-06-15','Email','Desktop'),\n(29,17,'2025-06-20','Google','Mobile'),\n(30,18,'2025-07-01','Instagram','Mobile'),\n\n(31,19,'2025-07-05','Google','Mobile'),\n(32,20,'2025-07-10','Facebook','Desktop'),\n(33,20,'2025-07-14','Facebook','Mobile'),\n\n(34,21,'2025-07-18','Google','Mobile'),\n(35,22,'2025-07-25','Instagram','Mobile'),\n(36,23,'2025-08-01','Google','Desktop'),\n(37,24,'2025-08-05','Facebook','Mobile'),\n(38,25,'2025-08-12','Email','Mobile'),\n\n(39,26,'2025-08-18','Google','Mobile'),\n(40,27,'2025-08-25','Facebook','Desktop'),\n(41,28,'2025-09-01','Instagram','Mobile'),\n(42,29,'2025-09-08','Google','Mobile'),\n(43,30,'2025-09-15','Facebook','Desktop'),\n\n(44,31,'2025-09-20','Google','Mobile'),\n(45,32,'2025-09-28','Email','Mobile'),\n(46,33,'2025-10-05','Facebook','Mobile'),\n(47,34,'2025-10-12','Google','Desktop'),\n(48,35,'2025-10-18','Instagram','Mobile'),\n\n(49,36,'2025-10-25','Google','Mobile'),\n(50,37,'2025-11-01','Facebook','Desktop'),\n(51,38,'2025-11-08','Email','Mobile'),\n(52,39,'2025-11-15','Google','Mobile'),\n(53,40,'2025-11-22','Instagram','Mobile'),\n\n(54,41,'2025-12-01','Google','Desktop'),\n(55,42,'2025-12-08','Facebook','Mobile'),\n(56,43,'2025-12-15','Google','Mobile'),\n(57,44,'2025-12-22','Instagram','Desktop'),\n\n(58,45,'2026-01-01','Google','Mobile'),\n(59,46,'2026-01-08','Facebook','Mobile'),\n(60,47,'2026-01-15','Email','Desktop'),\n(61,48,'2026-02-01','Google','Mobile'),\n(62,49,'2026-02-08','Instagram','Mobile'),\n(63,50,'2026-02-15','Facebook','Mobile');\nINSERT INTO ec.payments\n(payment_id, order_id, payment_date, amount, status)\nVALUES\n(5001, 1001, '2025-03-05', 2700, 'Success'),\n(5002, 1002, '2025-03-08', 5600, 'Success'),\n(5003, 1003, '2025-03-15', 7300, 'Success'),\n(5004, 1004, '2025-03-20', 3800, 'Success'),\n(5005, 1005, '2025-03-25', 2800, 'Failed'),\n\n(5006, 1006, '2025-04-02', 4700, 'Success'),\n(5007, 1007, '2025-04-07', 4100, 'Success'),\n(5008, 1008, '2025-04-15', 3000, 'Pending'),\n(5009, 1009, '2025-04-20', 4400, 'Success'),\n(5010, 1010, '2025-04-25', 2800, 'Success'),\n\n(5011, 1011, '2025-05-03', 7000, 'Success'),\n(5012, 1012, '2025-05-08', 5400, 'Success'),\n(5013, 1013, '2025-05-12', 4200, 'Success'),\n(5014, 1014, '2025-05-18', NULL, 'Failed'),\n(5015, 1015, '2025-05-25', 10100, 'Success'),\n\n(5016, 1016, '2025-06-02', 6300, 'Success'),\n(5017, 1017, '2025-06-10', 6000, 'Success'),\n(5018, 1018, '2025-06-15', 12000, 'Success'),\n(5019, 1019, '2025-06-20', 5000, 'Success'),\n(5020, 1020, '2025-06-28', NULL, 'Pending'),\n\n(5021, 1021, '2025-07-03', 6700, 'Success'),\n(5022, 1022, '2025-07-08', 8800, 'Success'),\n(5023, 1023, '2025-07-15', 3100, 'Success'),\n(5024, 1024, '2025-07-22', 9000, 'Success'),\n(5025, 1025, '2025-07-28', 2800, 'Failed'),\n\n(5026, 1026, '2025-08-04', 7700, 'Success'),\n(5027, 1027, '2025-08-10', 5800, 'Success'),\n(5028, 1028, '2025-08-15', 4600, 'Success'),\n(5029, 1029, '2025-08-21', 4750, 'Success'),\n(5030, 1030, '2025-08-29', 6400, 'Success'),\n\n(5031, 1031, '2025-09-05', 11800, 'Success'),\n(5032, 1032, '2025-09-12', NULL, 'Pending'),\n(5033, 1033, '2025-09-18', 6200, 'Success'),\n(5034, 1034, '2025-09-25', 9200, 'Success'),\n(5035, 1035, '2025-10-02', 3400, 'Success'),\n\n(5036, 1036, '2025-10-08', 8150, 'Success'),\n(5037, 1037, '2025-10-15', NULL, 'Failed'),\n(5038, 1038, '2025-10-22', 5400, 'Success'),\n(5039, 1039, '2025-10-29', 9050, 'Success'),\n(5040, 1040, '2025-11-05', 7800, 'Success'),\n\n(5041, 1041, '2025-11-12', 11900, 'Success'),\n(5042, 1042, '2025-11-20', NULL, 'Pending'),\n(5043, 1043, '2025-11-27', 8600, 'Success'),\n(5044, 1044, '2025-12-04', 9500, 'Success'),\n(5045, 1045, '2025-12-11', 4050, 'Success'),\n\n(5046, 1046, '2025-12-18', 11000, 'Success'),\n(5047, 1047, '2025-12-25', 8900, 'Success'),\n(5048, 1048, '2026-01-05', 10500, 'Success'),\n(5049, 1049, '2026-01-12', 3700, 'Success'),\n(5050, 1050, '2026-01-20', NULL, 'Failed'),\n\n(5051, 1051, '2026-02-05', 11200, 'Success'),\n(5052, 1052, '2026-02-12', 8100, 'Success'),\n(5053, 1053, '2026-02-20', 4700, 'Success'),\n(5054, 1054, '2026-02-25', 4200, 'Success'),\n(5055, 1055, '2026-03-03', 6000, 'Success'),\n(5056, 1056, '2026-03-08', 16500, 'Success'),\n(5057, 1057, '2026-03-15', 14700, 'Success'),\n(5058, 1058, '2026-03-20', 13000, 'Success'),\n(5059, 1059, '2026-03-25', NULL, 'Pending'),\n(5060, 1060, '2026-03-28', 4400, 'Success');\nINSERT INTO ec.order_items\n(order_id, product_id, quantity, unit_price)\nVALUES\n(1001, 101, 2, 900),\n(1001, 113, 1, 900),\n\n(1002, 102, 1, 3200),\n(1002, 118, 2, 1200),\n\n(1003, 107, 1, 4500),\n(1003, 108, 2, 1400),\n\n(1004, 103, 1, 2200),\n(1004, 112, 2, 800),\n\n(1005, 104, 1, 2800),\n\n(1006, 109, 1, 2500),\n(1006, 110, 1, 2200),\n\n(1007, 120, 2, 1300),\n(1007, 122, 3, 500),\n\n(1008, 111, 1, 3000),\n\n(1009, 105, 1, 3500),\n(1009, 101, 1, 900),\n\n(1010, 114, 2, 1400),\n\n(1011, 123, 1, 5200),\n(1011, 106, 1, 1800),\n\n(1012, 102, 1, 3100),\n(1012, 103, 1, 2300),\n\n(1013, 113, 3, 900),\n(1013, 112, 2, 750),\n\n(1014, 107, 1, 4800),\n\n(1015, 116, 1, 7500),\n(1015, 118, 2, 1300),\n\n(1016, 109, 2, 2400),\n(1016, 108, 1, 1500),\n\n(1017, 117, 1, 6000),\n\n(1018, 104, 2, 2900),\n(1018, 125, 1, 6200),\n\n(1019, 120, 1, 1200),\n(1019, 121, 1, 3800),\n\n(1020, 105, 1, 3600),\n\n(1021, 123, 1, 5000),\n(1021, 101, 2, 850),\n\n(1022, 107, 1, 4600),\n(1022, 110, 2, 2100),\n\n(1023, 112, 2, 800),\n(1023, 115, 1, 1500),\n\n(1024, 124, 1, 9000),\n\n(1025, 108, 2, 1400),\n\n(1026, 102, 1, 3300),\n(1026, 103, 2, 2200),\n\n(1027, 111, 1, 3200),\n(1027, 109, 1, 2600),\n\n(1028, 114, 2, 1500),\n(1028, 115, 1, 1600),\n\n(1029, 106, 2, 1900),\n(1029, 101, 1, 950),\n\n(1030, 121, 1, 4000),\n(1030, 120, 2, 1200),\n\n(1031, 123, 1, 5300),\n(1031, 125, 1, 6500),\n\n(1032, 104, 1, 3000),\n\n(1033, 107, 1, 4700),\n(1033, 108, 1, 1500),\n\n(1034, 116, 1, 7800),\n(1034, 118, 1, 1400),\n\n(1035, 113, 2, 950),\n(1035, 114, 1, 1500),\n\n(1036, 117, 1, 6200),\n(1036, 119, 3, 650),\n\n(1037, 109, 1, 2600),\n\n(1038, 102, 1, 3400),\n(1038, 106, 1, 2000),\n\n(1039, 120, 1, 1250),\n(1039, 121, 2, 3900),\n\n(1040, 125, 1, 6800),\n(1040, 101, 1, 1000),\n\n(1041, 107, 2, 4800),\n(1041, 110, 1, 2300),\n\n(1042, 103, 1, 2400),\n\n(1043, 123, 1, 5500),\n(1043, 104, 1, 3100),\n\n(1044, 124, 1, 9500),\n\n(1045, 114, 2, 1600),\n(1045, 112, 1, 850),\n\n(1046, 116, 1, 8000),\n(1046, 118, 2, 1500),\n\n(1047, 111, 1, 3500),\n(1047, 109, 2, 2700),\n\n(1048, 102, 1, 3500),\n(1048, 125, 1, 7000),\n\n(1049, 120, 2, 1300),\n(1049, 122, 2, 550),\n\n(1050, 123, 1, 5600),\n\n(1051, 124, 1, 9800),\n(1051, 119, 2, 700),\n\n(1052, 107, 1, 4900),\n(1052, 108, 2, 1600),\n\n(1053, 113, 3, 1000),\n(1053, 115, 1, 1700),\n\n(1054, 104, 1, 3200),\n(1054, 101, 1, 1000),\n\n(1055, 102, 1, 3600),\n(1055, 103, 1, 2400),\n\n(1056, 125, 2, 7200),\n(1056, 106, 1, 2100),\n\n(1057, 116, 1, 8200),\n(1057, 117, 1, 6500),\n\n(1058, 123, 1, 5700),\n(1058, 125, 1, 7300),\n\n(1059, 107, 1, 5000),\n\n(1060, 114, 2, 1700),\n(1060, 113, 1, 1000);\nINSERT INTO ec.orders\n(order_id, customer_id, order_date, status)\nVALUES\n(1001, 1, '2025-03-05', 'Completed'),\n(1002, 2, '2025-03-08', 'Completed'),\n(1003, 3, '2025-03-15', 'Completed'),\n(1004, 1, '2025-03-20', 'Completed'),\n(1005, 4, '2025-03-25', 'Cancelled'),\n(1006, 5, '2025-04-02', 'Completed'),\n(1007, 6, '2025-04-07', 'Completed'),\n(1008, 7, '2025-04-15', 'Pending'),\n(1009, 8, '2025-04-20', 'Completed'),\n(1010, 9, '2025-04-25', 'Completed'),\n\n(1011, 10, '2025-05-03', 'Completed'),\n(1012, 2, '2025-05-08', 'Completed'),\n(1013, 11, '2025-05-12', 'Completed'),\n(1014, 12, '2025-05-18', 'Cancelled'),\n(1015, 13, '2025-05-25', 'Completed'),\n(1016, 14, '2025-06-02', 'Completed'),\n(1017, 15, '2025-06-10', 'Completed'),\n(1018, 1, '2025-06-15', 'Completed'),\n(1019, 16, '2025-06-20', 'Completed'),\n(1020, 17, '2025-06-28', 'Pending'),\n\n(1021, 18, '2025-07-03', 'Completed'),\n(1022, 19, '2025-07-08', 'Completed'),\n(1023, 20, '2025-07-15', 'Completed'),\n(1024, 21, '2025-07-22', 'Completed'),\n(1025, 22, '2025-07-28', 'Cancelled'),\n(1026, 23, '2025-08-04', 'Completed'),\n(1027, 24, '2025-08-10', 'Completed'),\n(1028, 25, '2025-08-15', 'Completed'),\n(1029, 26, '2025-08-21', 'Completed'),\n(1030, 27, '2025-08-29', 'Completed'),\n\n(1031, 28, '2025-09-05', 'Completed'),\n(1032, 29, '2025-09-12', 'Pending'),\n(1033, 30, '2025-09-18', 'Completed'),\n(1034, 31, '2025-09-25', 'Completed'),\n(1035, 32, '2025-10-02', 'Completed'),\n(1036, 33, '2025-10-08', 'Completed'),\n(1037, 34, '2025-10-15', 'Cancelled'),\n(1038, 35, '2025-10-22', 'Completed'),\n(1039, 36, '2025-10-29', 'Completed'),\n(1040, 37, '2025-11-05', 'Completed'),\n\n(1041, 38, '2025-11-12', 'Completed'),\n(1042, 39, '2025-11-20', 'Pending'),\n(1043, 40, '2025-11-27', 'Completed'),\n(1044, 41, '2025-12-04', 'Completed'),\n(1045, 42, '2025-12-11', 'Completed'),\n(1046, 43, '2025-12-18', 'Completed'),\n(1047, 44, '2025-12-25', 'Completed'),\n(1048, 45, '2026-01-05', 'Completed'),\n(1049, 46, '2026-01-12', 'Completed'),\n(1050, 47, '2026-01-20', 'Cancelled'),\n\n(1051, 48, '2026-02-05', 'Completed'),\n(1052, 49, '2026-02-12', 'Completed'),\n(1053, 50, '2026-02-20', 'Completed'),\n(1054, 3, '2026-02-25', 'Completed'),\n(1055, 10, '2026-03-03', 'Completed'),\n(1056, 1, '2026-03-08', 'Completed'),\n(1057, 20, '2026-03-15', 'Completed'),\n(1058, 25, '2026-03-20', 'Completed'),\n(1059, 30, '2026-03-25', 'Pending'),\n(1060, 35, '2026-03-28', 'Completed');\nINSERT INTO ec.products\n(product_id, product_name, category, cost)\nVALUES\n(101, 'Wireless Mouse', 'Electronics', 600),\n(102, 'Mechanical Keyboard', 'Electronics', 2200),\n(103, 'USB-C Hub', 'Electronics', 1400),\n(104, 'Bluetooth Speaker', 'Electronics', 1800),\n(105, 'Webcam HD', 'Electronics', 2500),\n(106, 'Power Bank', 'Electronics', 1200),\n\n(107, 'Running Shoes', 'Fashion', 2800),\n(108, 'Casual Shirt', 'Fashion', 900),\n(109, 'Denim Jeans', 'Fashion', 1600),\n(110, 'Backpack', 'Fashion', 1300),\n(111, 'Wrist Watch', 'Fashion', 2100),\n\n(112, 'Python Programming', 'Books', 500),\n(113, 'SQL Mastery', 'Books', 600),\n(114, 'Data Science Handbook', 'Books', 900),\n(115, 'Machine Learning Guide', 'Books', 1000),\n\n(116, 'Office Chair', 'Home', 5500),\n(117, 'Study Table', 'Home', 4200),\n(118, 'Desk Lamp', 'Home', 900),\n(119, 'Water Bottle', 'Home', 400),\n\n(120, 'Yoga Mat', 'Fitness', 800),\n(121, 'Dumbbell Set', 'Fitness', 2500),\n(122, 'Skipping Rope', 'Fitness', 300),\n\n(123, 'Smart Watch', 'Electronics', 3500),\n(124, 'Air Purifier', 'Home', 7000),\n(125, 'Premium Headphones', 'Electronics', 4500);\nINSERT INTO ec.customers\n(customer_id, name, signup_date, country)\nVALUES\n(1, 'Rahim Ahmed', '2025-01-05', 'Bangladesh'),\n(2, 'Karim Hasan', '2025-01-12', 'Bangladesh'),\n(3, 'Nusrat Jahan', '2025-01-18', 'Bangladesh'),\n(4, 'Sadia Islam', '2025-02-02', 'India'),\n(5, 'Tanvir Hossain', '2025-02-14', 'Bangladesh'),\n(6, 'Mim Akter', '2025-02-20', 'Nepal'),\n(7, 'Arif Rahman', '2025-03-01', 'Bangladesh'),\n(8, 'Jannat Ara', '2025-03-08', 'Malaysia'),\n(9, 'Fahim Chowdhury', '2025-03-15', NULL),\n(10, 'Sumaiya Khan', '2025-03-22', 'Bangladesh'),\n\n(11, 'Sakib Ahmed', '2025-04-02', 'Bangladesh'),\n(12, 'Tania Sultana', '2025-04-10', 'India'),\n(13, 'Mehedi Hasan', '2025-04-18', 'Bangladesh'),\n(14, 'Raisa Rahman', '2025-04-25', 'Pakistan'),\n(15, 'Nabil Hossain', '2025-05-03', NULL),\n(16, 'Ayesha Siddika', '2025-05-11', 'Bangladesh'),\n(17, 'Shuvo Das', '2025-05-19', 'India'),\n(18, 'Mahi Islam', '2025-05-27', 'Bangladesh'),\n(19, 'Imran Kabir', '2025-06-04', 'Sri Lanka'),\n(20, 'Farzana Yasmin', '2025-06-12', 'Bangladesh'),\n\n(21, 'Rifat Ahmed', '2025-06-20', 'Bangladesh'),\n(22, 'Lamia Akter', '2025-07-01', NULL),\n(23, 'Adnan Karim', '2025-07-09', 'Malaysia'),\n(24, 'Nadia Sultana', '2025-07-17', 'Bangladesh'),\n(25, 'Hasan Mahmud', '2025-07-25', 'India'),\n(26, 'Sumi Rahman', '2025-08-02', 'Bangladesh'),\n(27, 'Rakibul Islam', '2025-08-10', 'Nepal'),\n(28, 'Mou Rani', '2025-08-18', 'Bangladesh'),\n(29, 'Shakil Ahmed', '2025-08-26', 'Pakistan'),\n(30, 'Priya Das', '2025-09-03', 'India'),\n\n(31, 'Abir Hossain', '2025-09-11', 'Bangladesh'),\n(32, 'Nabila Khan', '2025-09-19', NULL),\n(33, 'Rony Islam', '2025-09-27', 'Bangladesh'),\n(34, 'Jui Akter', '2025-10-05', 'Malaysia'),\n(35, 'Mahin Rahman', '2025-10-13', 'Bangladesh'),\n(36, 'Shirin Akter', '2025-10-21', 'India'),\n(37, 'Ovi Hasan', '2025-10-29', 'Bangladesh'),\n(38, 'Mariya Islam', '2025-11-06', 'Nepal'),\n(39, 'Sabbir Ahmed', '2025-11-14', NULL),\n(40, 'Tithi Rahman', '2025-11-22', 'Bangladesh'),\n\n(41, 'Emon Hossain', '2025-12-01', 'Bangladesh'),\n(42, 'Nipa Sultana', '2025-12-08', 'India'),\n(43, 'Rashed Karim', '2025-12-15', 'Bangladesh'),\n(44, 'Anika Tasnim', '2025-12-22', 'Malaysia'),\n(45, 'Foysal Ahmed', '2026-01-03', NULL),\n(46, 'Sanjida Islam', '2026-01-10', 'Bangladesh'),\n(47, 'Nayeem Hasan', '2026-01-18', 'India'),\n(48, 'Puja Rani', '2026-02-01', 'Bangladesh'),\n(49, 'Jahidul Islam', '2026-02-10', 'Nepal'),\n(50, 'Mimma Rahman', '2026-02-20', 'Bangladesh');\n",
     "options": {
         "tabSize": 4,
         "indentSize": 4,
@@ -15,11 +15,11 @@
             {
                 "inSelectionMode": false,
                 "selectionStart": {
-                    "lineNumber": 2,
+                    "lineNumber": 599,
                     "column": 1
                 },
                 "position": {
-                    "lineNumber": 2,
+                    "lineNumber": 599,
                     "column": 1
                 }
             }
@@ -27,10 +27,10 @@
         "viewState": {
             "scrollLeft": 0,
             "firstPosition": {
-                "lineNumber": 1,
+                "lineNumber": 579,
                 "column": 1
             },
-            "firstPositionDeltaTop": 0
+            "firstPositionDeltaTop": -10
         },
         "contributionsState": {
             "editor.contrib.folding": {},
@@ -53,7 +53,7 @@
                         }
                     ]
                 },
-                "currentHeight": 133.296875,
+                "currentHeight": 28,
                 "currentSet": 1,
                 "statements": [
                     {
@@ -73,6 +73,645 @@
             "state": {
                 "start": 2,
                 "end": 2,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "e32f39cc-2b2e-453b-cec6-0bbe525ceaca",
+                            "content": "OK, 0 records retrieved in 1.339ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 7
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 3,
+                "end": 3,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "6e0b87e4-8dea-4b43-ebea-ef696eb583a0",
+                            "content": "OK, 0 records retrieved in 0.719ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 15
+                        },
+                        "contentStart": 0,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 4,
+                "end": 54,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 0,
+                            "index": 1,
+                            "content": "MySQL Error (1050): Table 'products' already exists",
+                            "language": "ansi"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": ""
+                    }
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 129
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 129,
+                            "length": 140
+                        },
+                        "contentStart": 131,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 269,
+                            "length": 121
+                        },
+                        "contentStart": 271,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 390,
+                            "length": 116
+                        },
+                        "contentStart": 392,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 506,
+                            "length": 150
+                        },
+                        "contentStart": 508,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 656,
+                            "length": 153
+                        },
+                        "contentStart": 658,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 809,
+                            "length": 146
+                        },
+                        "contentStart": 811,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 55,
+                "end": 55,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "840e6513-79a6-4fa7-d14e-e29106d6d08d"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 12
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "277bfc1d-d4b6-4cbd-a765-32d158468f3e",
+                    "resultId": "840e6513-79a6-4fa7-d14e-e29106d6d08d",
+                    "rows": [
+                        {
+                            "0": "customers"
+                        },
+                        {
+                            "0": "order_items"
+                        },
+                        {
+                            "0": "orders"
+                        },
+                        {
+                            "0": "payments"
+                        },
+                        {
+                            "0": "products"
+                        },
+                        {
+                            "0": "subscriptions"
+                        },
+                        {
+                            "0": "website_visits"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Tables_in_ec",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 7 records retrieved in 4.915ms"
+                    },
+                    "totalRowCount": 7,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SHOW TABLES",
+                    "updatable": false
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 56,
+                "end": 57,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "47e255d5-ec87-4a68-edfa-2792499df1ff"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 114
+                        },
+                        "contentStart": 77,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "277bfc1d-d4b6-4cbd-a765-32d158468f3e",
+                    "resultId": "47e255d5-ec87-4a68-edfa-2792499df1ff",
+                    "rows": [],
+                    "columns": [
+                        {
+                            "title": "visit_id",
+                            "field": "0",
+                            "dataType": {
+                                "type": 4,
+                                "flags": [
+                                    "SIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 10,
+                                "parameterFormatType": "OneOrZero",
+                                "synonyms": [
+                                    "INTEGER",
+                                    "INT4"
+                                ]
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "customer_id",
+                            "field": "1",
+                            "dataType": {
+                                "type": 4,
+                                "flags": [
+                                    "SIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 10,
+                                "parameterFormatType": "OneOrZero",
+                                "synonyms": [
+                                    "INTEGER",
+                                    "INT4"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        },
+                        {
+                            "title": "visit_date",
+                            "field": "2",
+                            "dataType": {
+                                "type": 27,
+                                "needsQuotes": true
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        },
+                        {
+                            "title": "source",
+                            "field": "3",
+                            "dataType": {
+                                "type": 15,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "UNICODE",
+                                    "ASCII"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "One",
+                                "synonyms": [
+                                    "CHAR VARYING",
+                                    "CHARACTER VARYING",
+                                    "VARCHARACTER"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        },
+                        {
+                            "title": "device",
+                            "field": "4",
+                            "dataType": {
+                                "type": 15,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "UNICODE",
+                                    "ASCII"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "One",
+                                "synonyms": [
+                                    "CHAR VARYING",
+                                    "CHARACTER VARYING",
+                                    "VARCHARACTER"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": null
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 0 records retrieved in 0.916ms"
+                    },
+                    "totalRowCount": 0,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "-- Q1. Customer-wise total revenue বের করো। শুধু Completed order হিসাব করবে।\nSELECT * from website_visits limit 1",
+                    "updatable": true,
+                    "fullTableName": "website_visits"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 58,
+                "end": 58,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "45ef1c3c-8eec-4b46-a38c-f88819c5f228",
+                            "content": "OK, 0 records retrieved in 0.6ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 22
+                        },
+                        "contentStart": 0,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 59,
+                "end": 115,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "ca58080a-e66a-484d-c036-0f431b0a9133",
+                            "content": "OK, 50 rows affected in 20.987ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 2307
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 116,
+                "end": 199,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "393da32c-83bd-4870-bed8-8f62d30fe0e7",
+                            "content": "OK, 63 rows affected in 17.617ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 2677
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 200,
+                "end": 272,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "adcf53ca-32a3-46b6-c7c1-7e10c6066330",
+                            "content": "OK, 60 rows affected in 16.774ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 2798
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 273,
+                "end": 440,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "0c10f0b1-e475-4e05-bd96-f068a8aabaed",
+                            "content": "OK, 106 rows affected in 14.131ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 2454
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 441,
+                "end": 508,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "96528815-fb47-443d-e471-22e4127583f8",
+                            "content": "OK, 60 rows affected in 13.906ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 2393
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 509,
+                "end": 541,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "dbdb68dc-163d-42c0-8f28-8d5ef49f459e",
+                            "content": "OK, 25 rows affected in 28.197ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 1101
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 542,
+                "end": 598,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "d798b22d-e24d-465b-caff-71bb4339fd8a",
+                            "content": "OK, 50 rows affected in 35.559ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28.875,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 2423
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 599,
+                "end": 599,
                 "language": "mysql",
                 "currentSet": 1,
                 "statements": [
